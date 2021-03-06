@@ -6,7 +6,8 @@ const testController = new TestController()
 
 const router = Router()
 
-router.get('/test', testController.test)
+router.post('/test', testController.create)
+router.get('/test', testController.show)
 
 
 module.exports = router

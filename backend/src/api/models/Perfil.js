@@ -17,12 +17,18 @@ class Perfil extends Model {
             frequencia: DataTypes.STRING,
             n_quero: DataTypes.STRING,
             fx_taria: DataTypes.STRING,
-            observacoes: DataTypes.STRING
+            observacoes: DataTypes.STRING,
+            cliente_id: DataTypes.INTEGER
         }, {
             sequelize,
             freezeTableName: true,
             modelName: 'Perfil',
             tableName: 'perfil',
+            classMethods: {
+                associate: (model) => {
+                  Perfil.belongsTo(model.Cliente, { foreignKey: 'cliente_id' })
+                }
+            }
         })
     }
 }

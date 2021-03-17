@@ -7,11 +7,17 @@ class Cartao extends Model {
             nome: DataTypes.STRING,
             cpf: DataTypes.STRING,
             validade: DataTypes.STRING,
+            cliente_id: DataTypes.INTEGER
         }, {
           sequelize,
           freezeTableName: true,
           modelName: 'Cartao',
           tableName: 'cartao',
+          classMethods: {
+            associate: (model) => {
+              Cartao.belongsTo(model.Cliente, { foreignKey: 'cliente_id' })
+            }
+        }
         })
     }
 }

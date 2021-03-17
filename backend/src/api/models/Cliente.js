@@ -12,9 +12,9 @@ class Cliente extends Model {
           dat_nasc: DataTypes.STRING, 
           status: DataTypes.STRING, 
           pontuacao: DataTypes.STRING,
-          cartaoId: DataTypes.INTEGER,
-          enderecoId: DataTypes.INTEGER,
-          perfilId: DataTypes.INTEGER
+          cartao_id: DataTypes.INTEGER,
+          endereco_id: DataTypes.INTEGER,
+          perfil_id: DataTypes.INTEGER
         }, {
             sequelize,
             freezeTableName: true,

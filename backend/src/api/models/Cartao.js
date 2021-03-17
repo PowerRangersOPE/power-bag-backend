@@ -8,9 +8,10 @@ class Cartao extends Model {
             cpf: DataTypes.STRING,
             validade: DataTypes.STRING,
         }, {
-            sequelize,
-            modelName: 'Cartao',
-            // tableName
+          sequelize,
+          freezeTableName: true,
+          modelName: 'Cartao',
+          tableName: 'cartao',
         })
     }
 }

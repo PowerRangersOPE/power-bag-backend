@@ -20,8 +20,9 @@ class Perfil extends Model {
             observacoes: DataTypes.STRING
         }, {
             sequelize,
+            freezeTableName: true,
             modelName: 'Perfil',
-            // tableName
+            tableName: 'perfil',
         })
     }
 }

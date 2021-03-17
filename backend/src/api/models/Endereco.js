@@ -13,8 +13,9 @@ class Endereco extends Model {
             observacoes: DataTypes.STRING
         }, {
             sequelize,
+            freezeTableName: true,
             modelName: 'Endereco',
-            // tableName
+            tableName: 'endereco',
         })
     }
 }

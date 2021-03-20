@@ -8,6 +8,7 @@ const Perfil = require("../models/Perfil");
 const Cliente = require("../models/Cliente");
 const Bag = require("../models/Bag");
 const Produto = require("../models/Produto");
+const ItensBag = require("../models/ItensBag");
 
 const connection = new Sequelize(dbConfig);
 
@@ -18,6 +19,7 @@ Perfil.init(connection);
 Cliente.init(connection);
 Bag.init(connection);
 Produto.init(connection);
+ItensBag.init(connection);
 
 //Refatorar os inits
 

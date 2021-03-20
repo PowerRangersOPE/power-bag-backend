@@ -1,5 +1,7 @@
 const { Router } = require("express");
 
+//Refatorar os inits
+
 const TestController = require("./api/controllers/TestController");
 const CartaoController = require("./api/controllers/CartaoController");
 const EnderecoController = require("./api/controllers/EnderecoController");
@@ -7,6 +9,7 @@ const PerfilController = require("./api/controllers/PerfilController");
 const ClienteController = require("./api/controllers/ClienteController");
 const BagController = require("./api/controllers/BagController");
 const ProdutoController = require("./api/controllers/ProdutoController");
+const ItensBagController = require("./api/controllers/ItensBagController");
 
 const testController = new TestController();
 const cartaoController = new CartaoController();
@@ -15,6 +18,7 @@ const perfilController = new PerfilController();
 const clienteController = new ClienteController();
 const bagController = new BagController();
 const produtoController = new ProdutoController();
+const itensBagController = new ItensBagController();
 
 const router = Router();
 
@@ -56,5 +60,11 @@ router.get("/produto/:id", produtoController.show);
 router.post("/produto", produtoController.store);
 router.put("/produto/:id", produtoController.update);
 router.delete("/produto/:id", produtoController.destroy);
+
+router.get("/itensBag", itensBagController.index);
+router.get("/itensBag/:id", itensBagController.show);
+router.post("/itensBag", itensBagController.store);
+router.put("/itensBag/:id", itensBagController.update);
+router.delete("/itensBag/:id", itensBagController.destroy);
 
 module.exports = router;

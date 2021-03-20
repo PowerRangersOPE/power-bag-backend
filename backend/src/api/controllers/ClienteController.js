@@ -1,4 +1,4 @@
-const Cliente = require('../models/Cliente')
+const Cliente = require("../models/Cliente");
 
 class ClienteController {
   async index(req, res) {
@@ -14,7 +14,7 @@ class ClienteController {
     try {
       const cliente = await Cliente.findByPk(req.params.id);
       return res.json(cliente);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -23,7 +23,7 @@ class ClienteController {
     try {
       const cliente = await Cliente.create(req.body);
       return res.json(cliente);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -33,7 +33,7 @@ class ClienteController {
       let cliente = await Cliente.findByPk(req.params.id);
       cliente = await cliente.update(req.body);
       return res.json(cliente);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -43,10 +43,10 @@ class ClienteController {
       let cliente = await Cliente.findByPk(req.params.id);
       cliente = await cliente.destroy(req.body);
       return res.json(cliente);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
 }
 
-module.exports = ClienteController
+module.exports = ClienteController;

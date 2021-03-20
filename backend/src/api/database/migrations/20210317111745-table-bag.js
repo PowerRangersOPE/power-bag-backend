@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
-        allowNull: true,
+        allowNull: false,
         references: {
           // User hasMany 1:N
           model: "cliente",

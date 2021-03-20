@@ -5,7 +5,7 @@ class ItensBag extends Model {
     super.init(
       {
         bag_id: DataTypes.INTEGER,
-        produto_id: DataTypes.INTEGER,
+        produto_id: DataTypes.ARRAY(DataTypes.DECIMAL),
       },
       {
         sequelize,

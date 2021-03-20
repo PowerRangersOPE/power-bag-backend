@@ -21,7 +21,7 @@ module.exports = {
         },
       },
       produto_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
         allowNull: false,

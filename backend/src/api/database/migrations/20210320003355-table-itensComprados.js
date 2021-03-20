@@ -2,35 +2,12 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable("bag", {
+    return queryInterface.createTable("itensComprados", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
-      },
-      status: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      observacoes: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      valor: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      cliente_id: {
-        type: Sequelize.INTEGER,
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
-        allowNull: false,
-        references: {
-          // User hasMany 1:N
-          model: "cliente",
-          key: "id",
-        },
       },
       itensBag_id: {
         type: Sequelize.INTEGER,
@@ -38,7 +15,7 @@ module.exports = {
         onDelete: "SET NULL",
         allowNull: false,
         references: {
-          // User hasMany 1:N
+          // hasMany 1:N
           model: "itensBag",
           key: "id",
         },
@@ -55,6 +32,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("bag");
+    await queryInterface.dropTable("itensDevolvidos");
   },
 };

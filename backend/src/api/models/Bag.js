@@ -16,7 +16,8 @@ class Bag extends Model {
         tableName: "bag",
         classMethods: {
           associate: (model) => {
-            Cartao.hasMany(model.Cliente, { foreignKey: "cliente_id" });
+            Bag.hasMany(model.Cliente, { foreignKey: "cliente_id" }),
+              Bag.belongsTo(model.ItensBag, { foreignKey: "itensBag_id" });
           },
         },
       },

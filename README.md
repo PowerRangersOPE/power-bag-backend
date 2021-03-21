@@ -4,7 +4,7 @@
 src
 │   app.js          # Configurações da api
 │   server.js       # Server para iniciar o api
-└───api             
+└───api
   └───controllers   # Funções da controllers do express route
   └───models        # Modelos do banco de dados
   └───services      # Regras de negócio
@@ -16,26 +16,27 @@ src
 └───routes          # Definição de rotas express
 ```
 
-# How you use: 
+# How you use:
 
 - clone the repository
 - install dependencies:
-  - In your terminal: ` npm i ` or `yarn`
+  - In your terminal: `npm i` or `yarn`
 
 # Environment
 
 Create file with name: `.env`
 
-Insert into .env: 
+Insert into .env:
 
 ```
 PORT=3000
 ```
 
-# Init project 
-- In your terminal: ` npm run dev ` or `yarn dev`
+# Init project
 
-# Routes 
+- In your terminal: `npm run dev` or `yarn dev`
+
+# Routes
 
 For use api's routes, you need software Insomnia Core
 
@@ -59,9 +60,166 @@ curl --request GET \
   --url http://localhost:3000/test
 ```
 
+curl --request GET \
+ --url http://localhost:3000/cartao \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/cartao \
+ --header 'Content-Type: application/json' \
+ --data '{
+"numero": "2222222",
+"nome": "Ricardo Wojciechowski",
+"cpf": "111111111",
+"validade": "22/22",
+"cliente_id": 1
+}'
+
+curl --request PUT \
+ --url http://localhost:3000/cartao/4 \
+ --header 'Content-Type: application/json' \
+ --data '{
+"numero": "2222222",
+"nome": "Ricardo Wojciechowski",
+"cpf": "111111111",
+"validade": "22/22"
+}'
+
+curl --request GET \
+ --url http://localhost:3000/endereco \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/endereco \
+ --header 'Content-Type: application/json' \
+ --data '{
+"rua": "José Nogueira Filho",
+"numero": "119",
+"bairro": "Fernão Dias",
+"cidade": "Belo Horizonte",
+"uf": "MG",
+"cep": "06509012",
+"complemento": "Próximo a escola estadual",
+"observacoes": "Não estou disponível em casa nas quarta-feira",
+"cliente_id": 1
+}'
+
+curl --request GET \
+ --url http://localhost:3000/perfil \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/perfil \
+ --header 'Content-Type: application/json' \
+ --data '{
+"necessidade": "teste",
+"genero": "teste",
+"cor": "teste",
+"tipo_estampa": "teste",
+"tipo_tenis": "teste",
+"tipo_estilo": "teste",
+"tamanho_sapato": "teste",
+"tamanho_calca": "teste",
+"tamanho_camisa": "teste",
+"tamanho_tenis": "teste",
+"estacao_ano": "teste",
+"frequencia": "teste",
+"n_quero": "teste",
+"fx_taria": "teste",
+"observacoes": "teste",
+"cliente_id": 1
+}'
+
+curl --request GET \
+ --url http://localhost:3000/cliente \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/cliente \
+ --header 'Content-Type: application/json' \
+ --data '{
+"nome": 1,
+"email": "ricardowoj@hotmail.com",
+"cpf": "01212332199",
+"identificacao": "Rick",
+"tel_cel1": "11942692333",
+"tel_cel2": "1144321121",
+"dat_nasc": "23/01/1985",
+"status": "ativo",
+"pontuacao": "5"
+}'
+
+curl --request POST \
+ --url http://localhost:3000/cliente \
+ --header 'Content-Type: application/json' \
+ --data '{
+"nome": "Ricardo Wojciechowski",
+"email": "ricardowoj@hotmail.com",
+"cpf": "01212332199",
+"identificacao": "Rick",
+"tel_cel1": "11942692333",
+"tel_cel2": "1144321121",
+"dat_nasc": "23/01/1985",
+"status": "ativo",
+"pontuacao": "5",
+"cartao_id": 1,
+"endereco_id": 1,
+"perfil_id": 1
+}'
+
+curl --request GET \
+ --url http://localhost:3000/bag \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/bag \
+ --header 'Content-Type: application/json' \
+ --data '{
+"status": "ativo",
+"observacoes": "teste",
+"valor": "1000",
+"cliente_id": 1
+}'
+
+curl --request GET \
+ --url http://localhost:3000/produto \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/produto \
+ --header 'Content-Type: application/json' \
+ --data '{
+"valor": "teste",
+"tipo": "teste",
+"genero": "teste",
+"fx_etaria": "teste",
+"estacao_ano": "teste",
+"necessidade": "teste",
+"cor": "teste",
+"tipo_estampa": "teste",
+"tipo_estilo": "teste",
+"tipo_tenis": "teste",
+"tamanho_camisa": "teste",
+"tamanho_sapato": "teste",
+"tamanho_calca": "teste"
+}'
+
+curl --request GET \
+ --url http://localhost:3000/itensBag \
+ --header 'Content-Type: application/json'
+
+curl --request POST \
+ --url http://localhost:3000/itensBag \
+ --header 'Content-Type: application/json' \
+ --data '{
+"bag_id": 1,
+"produto_id": [1,2,3,4]
+}'
+
 ## Create route
 
 **Copy:**
+
 ```
 curl --request POST \
   --url http://localhost:3000/test \

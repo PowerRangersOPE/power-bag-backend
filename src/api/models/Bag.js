@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 class Bag extends Model {
   static init(sequelize) {
@@ -12,15 +12,15 @@ class Bag extends Model {
       {
         sequelize,
         freezeTableName: true,
-        modelName: "Bag",
-        tableName: "bag",
+        modelName: 'Bag',
+        tableName: 'bag',
         classMethods: {
           associate: (model) => {
-            Bag.hasMany(model.Cliente, { foreignKey: "cliente_id" }),
-              Bag.belongsTo(model.ItensBag, { foreignKey: "itensBag_id" });
+            Bag.hasMany(model.Cliente, { foreignKey: 'cliente_id' });
+            Bag.belongsTo(model.ItensBag, { foreignKey: 'itensBag_id' });
           },
         },
-      },
+      }
     );
   }
 }

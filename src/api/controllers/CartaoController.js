@@ -3,8 +3,7 @@ const Cartao = require('../models/Cartao')
 class CartaoController {
   async index(req, res) {
     try {
-      // const cartao = await Cartao.findAll();
-      const cartao = 1;
+      const cartao = await Cartao.findAll();
       return res.json(cartao);
     } catch (err) {
       return res.status(400).json({ error: err.message });

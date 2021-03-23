@@ -78,7 +78,7 @@ curl --request POST \
 # Power Bag
 
 ## Credit Card
-__________________________
+
 ```json
 curl --request GET \
  --url http://localhost:3000/cartao \
@@ -119,7 +119,6 @@ curl --request PUT \
 ```
 
 ## Address
-__________________________
 
 ```json
 curl --request GET \
@@ -146,8 +145,6 @@ curl --request POST \
 ```
 
 ## Profile
-__________________________
-
 
 ```json
 curl --request GET \
@@ -182,8 +179,6 @@ curl --request POST \
 ```
 
 ## User
-__________________________
-
 
 ```json
 curl --request GET \
@@ -232,8 +227,6 @@ curl --request POST \
 ```
 
 ## Bag
-__________________________
-
 
 ```json
 curl --request GET \
@@ -253,8 +246,6 @@ curl --request POST \
 ```
 
 ## Product
-__________________________
-
 
 ```json
 curl --request GET \
@@ -283,8 +274,6 @@ curl --request POST \
 ```
 
 ## Itens Bag
-__________________________
-
 
 ```json
 curl --request GET \

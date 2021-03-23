@@ -51,7 +51,7 @@ For use api's routes, you need software Insomnia Core
     - From Clipboard
     - Current
 
-## List Router
+## List
 
 **Copy:**
 
@@ -60,10 +60,38 @@ curl --request GET \
   --url http://localhost:3000/test
 ```
 
+## Create
+
+**Copy:**
+
+```
+curl --request POST \
+  --url http://localhost:3000/test \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"name": "Cleiton",
+	"age": 29
+}'
+```
+
+
+# Power Bag
+
+## Credit Card
+__________________________
+```json
 curl --request GET \
  --url http://localhost:3000/cartao \
  --header 'Content-Type: application/json'
+```
 
+```json
+curl --request GET \
+ --url http://localhost:3000/cartao \
+ --header 'Content-Type: application/json'
+```
+
+```json
 curl --request POST \
  --url http://localhost:3000/cartao \
  --header 'Content-Type: application/json' \
@@ -75,6 +103,9 @@ curl --request POST \
 "cliente_id": 1
 }'
 
+```
+
+```json
 curl --request PUT \
  --url http://localhost:3000/cartao/4 \
  --header 'Content-Type: application/json' \
@@ -85,10 +116,19 @@ curl --request PUT \
 "validade": "22/22"
 }'
 
+```
+
+## Address
+__________________________
+
+```json
 curl --request GET \
  --url http://localhost:3000/endereco \
  --header 'Content-Type: application/json'
 
+```
+
+```json
 curl --request POST \
  --url http://localhost:3000/endereco \
  --header 'Content-Type: application/json' \
@@ -103,11 +143,20 @@ curl --request POST \
 "observacoes": "Não estou disponível em casa nas quarta-feira",
 "cliente_id": 1
 }'
+```
 
+## Profile
+__________________________
+
+
+```json
 curl --request GET \
  --url http://localhost:3000/perfil \
  --header 'Content-Type: application/json'
 
+```
+
+```json
 curl --request POST \
  --url http://localhost:3000/perfil \
  --header 'Content-Type: application/json' \
@@ -130,10 +179,20 @@ curl --request POST \
 "cliente_id": 1
 }'
 
+```
+
+## User
+__________________________
+
+
+```json
 curl --request GET \
  --url http://localhost:3000/cliente \
  --header 'Content-Type: application/json'
 
+```
+
+```json
 curl --request POST \
  --url http://localhost:3000/cliente \
  --header 'Content-Type: application/json' \
@@ -149,6 +208,9 @@ curl --request POST \
 "pontuacao": "5"
 }'
 
+```
+
+```json
 curl --request POST \
  --url http://localhost:3000/cliente \
  --header 'Content-Type: application/json' \
@@ -167,6 +229,13 @@ curl --request POST \
 "perfil_id": 1
 }'
 
+```
+
+## Bag
+__________________________
+
+
+```json
 curl --request GET \
  --url http://localhost:3000/bag \
  --header 'Content-Type: application/json'
@@ -181,6 +250,13 @@ curl --request POST \
 "cliente_id": 1
 }'
 
+```
+
+## Product
+__________________________
+
+
+```json
 curl --request GET \
  --url http://localhost:3000/produto \
  --header 'Content-Type: application/json'
@@ -204,28 +280,24 @@ curl --request POST \
 "tamanho_calca": "teste"
 }'
 
+```
+
+## Itens Bag
+__________________________
+
+
+```json
 curl --request GET \
  --url http://localhost:3000/itensBag \
  --header 'Content-Type: application/json'
+```
 
+```json
 curl --request POST \
  --url http://localhost:3000/itensBag \
  --header 'Content-Type: application/json' \
  --data '{
 "bag_id": 1,
 "produto_id": [1,2,3,4]
-}'
-
-## Create route
-
-**Copy:**
-
-```
-curl --request POST \
-  --url http://localhost:3000/test \
-  --header 'Content-Type: application/json' \
-  --data '{
-	"name": "Cleiton",
-	"age": 29
 }'
 ```

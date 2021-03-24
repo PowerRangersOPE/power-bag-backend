@@ -32,6 +32,29 @@ Insert into .env:
 PORT=3000
 ```
 
+# To enable ESLint
+
+## Configure settings.json for VSCode
+
+- Open configurations with `CTRL + SHIFT + P`
+- Add in the end of file:
+
+  ```
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "emmet.syntaxProfiles": {
+      "javascript": "jsx"
+  },
+  "editor.formatOnSave": true,
+
+  ```
+
+- Install Plugins:
+  - ESLint
+  - EditorConfig for VS Code
+  - Prettier - Code formatter
+
 # Init project
 
 - In your terminal: `npm run dev` or `yarn dev`
@@ -73,7 +96,6 @@ curl --request POST \
 	"age": 29
 }'
 ```
-
 
 # Power Bag
 

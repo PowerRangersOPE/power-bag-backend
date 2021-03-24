@@ -1,4 +1,4 @@
-const ItensBag = require("../models/ItensBag");
+const ItensBag = require('../models/ItensBag');
 
 class itensBagController {
   async index(req, res) {
@@ -42,7 +42,7 @@ class itensBagController {
     try {
       let itensBag = await ItensBag.findByPk(req.params.id);
       itensBag = await itensBag.destroy(req.body);
-      return res.json(bitensBagg);
+      return res.json(itensBag);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

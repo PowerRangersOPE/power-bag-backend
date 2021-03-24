@@ -1,4 +1,4 @@
-const Endereco = require('../models/Endereco')
+const Endereco = require('../models/Endereco');
 
 class EnderecoController {
   async index(req, res) {
@@ -14,7 +14,7 @@ class EnderecoController {
     try {
       const endereco = await Endereco.findByPk(req.params.id);
       return res.json(endereco);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -23,7 +23,7 @@ class EnderecoController {
     try {
       const endereco = await Endereco.create(req.body);
       return res.json(endereco);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -33,7 +33,7 @@ class EnderecoController {
       let endereco = await Endereco.findByPk(req.params.id);
       endereco = await endereco.update(req.body);
       return res.json(endereco);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -43,10 +43,10 @@ class EnderecoController {
       let endereco = await Endereco.findByPk(req.params.id);
       endereco = await endereco.destroy(req.body);
       return res.json(endereco);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
 }
 
-module.exports = EnderecoController
+module.exports = EnderecoController;

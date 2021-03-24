@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 class Cliente extends Model {
   static init(sequelize) {
@@ -20,16 +20,16 @@ class Cliente extends Model {
       {
         sequelize,
         freezeTableName: true,
-        modelName: "Cliente",
-        tableName: "cliente",
+        modelName: 'Cliente',
+        tableName: 'cliente',
         classMethods: {
           associate: (model) => {
-            Cliente.belongsTo(model.Cartao, { foreignKey: "cartao_id" }),
-              Cliente.belongsTo(model.Endereco, { foreignKey: "endereco_id" }),
-              Cliente.belongsTo(model.Perfil, { foreignKey: "perfil_id" });
+            Cliente.belongsTo(model.Cartao, { foreignKey: 'cartao_id' });
+            Cliente.belongsTo(model.Endereco, { foreignKey: 'endereco_id' });
+            Cliente.belongsTo(model.Perfil, { foreignKey: 'perfil_id' });
           },
         },
-      },
+      }
     );
   }
 }

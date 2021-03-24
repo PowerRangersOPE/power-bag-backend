@@ -34,7 +34,7 @@ PORT=3000
 
 # To enable ESLint
 
-## Configure settings.json for VSCode
+### Configure settings.json for VSCode
 
 - Open configurations with `CTRL + SHIFT + P`
 - Add in the end of file:

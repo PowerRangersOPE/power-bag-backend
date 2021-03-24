@@ -1,14 +1,13 @@
-require('dotenv')
-const express = require('express')
+require('dotenv');
+const express = require('express');
 
-const router = require('./routes')
+const router = require('./routes');
 
-require('./api/database')
+require('./api/database');
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
-app.use(router)
+app.use(router);
 
-
-module.exports = app
+module.exports = app;

@@ -17,5 +17,7 @@
     "rules": {
         "prettier/prettier": "error",
         "comma-dangle": "off",
+        "class-methods-use-this": "off",
+        "no-unused-expressions": "off"
       }
 }

@@ -1,14 +1,15 @@
-const { Router } = require('express')
+const { Router } = require('express');
 
-const BagController = require('../../api/controllers/BagController')
-const bagController = new BagController()
+const BagController = require('../../api/controllers/BagController');
 
-const router = new Router()
+const bagController = new BagController();
 
-router.get("/bag", bagController.index);
-router.get("/bag/:id", bagController.show);
-router.post("/bag", bagController.store);
-router.put("/bag/:id", bagController.update);
-router.delete("/bag/:id", bagController.destroy);
+const router = new Router();
 
-module.exports = router
+router.get('/bag', bagController.index);
+router.get('/bag/:id', bagController.show);
+router.post('/bag', bagController.store);
+router.put('/bag/:id', bagController.update);
+router.delete('/bag/:id', bagController.destroy);
+
+module.exports = router;

@@ -1,4 +1,4 @@
-const Cartao = require('../models/Cartao')
+const Cartao = require('../models/Cartao');
 
 class CartaoController {
   async index(req, res) {
@@ -49,4 +49,4 @@ class CartaoController {
   }
 }
 
-module.exports = CartaoController
+module.exports = CartaoController;

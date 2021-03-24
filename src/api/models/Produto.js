@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require('sequelize');
 
 class Produto extends Model {
   static init(sequelize) {
@@ -21,14 +21,14 @@ class Produto extends Model {
       {
         sequelize,
         freezeTableName: true,
-        modelName: "Produto",
-        tableName: "produto",
+        modelName: 'Produto',
+        tableName: 'produto',
         classMethods: {
           associate: (model) => {
-            Produto.belongsTo(model.ItensBag, { foreignKey: "itensBag_id" });
+            Produto.belongsTo(model.ItensBag, { foreignKey: 'itensBag_id' });
           },
         },
-      },
+      }
     );
   }
 }

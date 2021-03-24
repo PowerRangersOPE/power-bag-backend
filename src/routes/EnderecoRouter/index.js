@@ -1,14 +1,15 @@
-const { Router } = require('express')
+const { Router } = require('express');
 
-const EnderecoController = require('../../api/controllers/EnderecoController')
-const enderecoController = new EnderecoController()
+const EnderecoController = require('../../api/controllers/EnderecoController');
 
-const router = new Router()
+const enderecoController = new EnderecoController();
 
-router.get("/endereco", enderecoController.index);
-router.get("/endereco/:id", enderecoController.show);
-router.post("/endereco", enderecoController.store);
-router.put("/endereco/:id", enderecoController.update);
-router.delete("/endereco/:id", enderecoController.destroy);
+const router = new Router();
 
-module.exports = router
+router.get('/endereco', enderecoController.index);
+router.get('/endereco/:id', enderecoController.show);
+router.post('/endereco', enderecoController.store);
+router.put('/endereco/:id', enderecoController.update);
+router.delete('/endereco/:id', enderecoController.destroy);
+
+module.exports = router;

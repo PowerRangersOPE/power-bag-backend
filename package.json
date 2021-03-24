@@ -4,9 +4,10 @@
   "description": "API for manager garment bags",
   "main": "src/app.js",
   "scripts": {
+    "precommit": "eslint:fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
-    "eslint:fix": "npx eslint --fix *.js"
+    "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
   },
   "author": "Power Rangers Squad",
   "license": "ISC",

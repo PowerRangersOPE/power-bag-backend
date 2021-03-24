@@ -1,4 +1,4 @@
-const Perfil = require('../models/Perfil')
+const Perfil = require('../models/Perfil');
 
 class PerfilController {
   async index(req, res) {
@@ -14,7 +14,7 @@ class PerfilController {
     try {
       const perfil = await Perfil.findByPk(req.params.id);
       return res.json(perfil);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -23,7 +23,7 @@ class PerfilController {
     try {
       const perfil = await Perfil.create(req.body);
       return res.json(perfil);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -33,7 +33,7 @@ class PerfilController {
       let perfil = await Perfil.findByPk(req.params.id);
       perfil = await perfil.update(req.body);
       return res.json(perfil);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
@@ -43,10 +43,10 @@ class PerfilController {
       let perfil = await Perfil.findByPk(req.params.id);
       perfil = await perfil.destroy(req.body);
       return res.json(perfil);
-    }catch (err) {
+    } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
 }
 
-module.exports = PerfilController
+module.exports = PerfilController;

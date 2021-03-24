@@ -1,4 +1,4 @@
-const Bag = require("../models/Bag");
+const Bag = require('../models/Bag');
 
 class bagController {
   async index(req, res) {

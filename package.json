@@ -3,17 +3,21 @@
   "version": "1.0.0",
   "description": "API for manager garment bags",
   "main": "src/app.js",
+  "private": true,
   "scripts": {
-    "precommit": "eslint:fix",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "dev": "nodemon src/server.js",
     "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
+    "postinstall": "husky install",
+    "prepare": "husky install"
   },
   "author": "Power Rangers Squad",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^5.16.0",
+    "husky": "^5.2.0",
     "nodemon": "^2.0.7",
+    "pinst": "^2.1.6",
     "sequelize-cli": "^6.2.0"
   },
   "dependencies": {

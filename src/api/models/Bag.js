@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class Bag extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         status: DataTypes.STRING,
         observacoes: DataTypes.STRING,
         valor: DataTypes.STRING,

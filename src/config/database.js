@@ -1,8 +1,11 @@
-const { resolve } = require('path');
+// const { resolve } = require('path');
 
 module.exports = {
-  dialect: 'sqlite',
-  storage: resolve(__dirname, '..', 'api', 'database', 'database.sqlite'),
+  username: 'postgres',
+  password: 'power-bag-01',
+  database: 'power-bag',
+  host: '127.0.0.1',
+  dialect: 'postgres',
   define: {
     timestamps: true,
     underscored: true,

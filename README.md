@@ -32,6 +32,12 @@ Insert into .env:
 PORT=3000
 ```
 
+# Docker
+
+```docker
+docker run --name power-bag -e POSTGRES_PASSWORD=power-bag-01 -d -p 5432:5432 postgres
+```
+
 # To enable ESLint
 
 ### Configure settings.json for VSCode

@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class Cliente extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         nome: DataTypes.STRING,
         email: DataTypes.STRING,
         cpf: DataTypes.STRING,
@@ -13,24 +18,17 @@ class Cliente extends Model {
         dat_nasc: DataTypes.STRING,
         status: DataTypes.STRING,
         pontuacao: DataTypes.STRING,
-        cartao_id: DataTypes.INTEGER,
-        endereco_id: DataTypes.INTEGER,
-        perfil_id: DataTypes.INTEGER,
       },
       {
         sequelize,
-        freezeTableName: true,
         modelName: 'Cliente',
         tableName: 'cliente',
-        classMethods: {
-          associate: (model) => {
-            Cliente.belongsTo(model.Cartao, { foreignKey: 'cartao_id' });
-            Cliente.belongsTo(model.Endereco, { foreignKey: 'endereco_id' });
-            Cliente.belongsTo(model.Perfil, { foreignKey: 'perfil_id' });
-          },
-        },
       }
     );
+  }
+
+  static associate(models) {
+    this.associate = this.hasOne(models.Cartao);
   }
 }
 

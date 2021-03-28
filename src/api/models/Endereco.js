@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class Endereco extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         rua: DataTypes.STRING,
         numero: DataTypes.STRING,
         bairro: DataTypes.STRING,
@@ -19,11 +24,6 @@ class Endereco extends Model {
         freezeTableName: true,
         modelName: 'Endereco',
         tableName: 'endereco',
-        classMethods: {
-          associate: (model) => {
-            Endereco.belongsTo(model.Cliente, { foreignKey: 'cliente_id' });
-          },
-        },
       }
     );
   }

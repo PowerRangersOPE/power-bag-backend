@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class Perfil extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         necessidade: DataTypes.STRING,
         genero: DataTypes.STRING,
         cor: DataTypes.STRING,

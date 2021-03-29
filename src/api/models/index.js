@@ -8,13 +8,19 @@ const ItensBag = require('./ItensBag');
 
 class Models {
   static init(sequelize) {
-    Cartao.init(sequelize);
-    Endereco.init(sequelize);
-    Perfil.init(sequelize);
-    Cliente.init(sequelize);
-    Bag.init(sequelize);
-    Produto.init(sequelize);
-    ItensBag.init(sequelize);
+    const models = {
+      Cartao: Cartao.init(sequelize),
+      Endereco: Endereco.init(sequelize),
+      Perfil: Perfil.init(sequelize),
+      Cliente: Cliente.init(sequelize),
+      Bag: Bag.init(sequelize),
+      Produto: Produto.init(sequelize),
+      ItensBag: ItensBag.init(sequelize),
+    };
+
+    Object.values(models)
+      .filter((model) => typeof model.associate === 'function')
+      .forEach((model) => model.associate(models));
   }
 }
 

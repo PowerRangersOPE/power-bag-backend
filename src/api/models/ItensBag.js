@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class ItensBag extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         bag_id: DataTypes.INTEGER,
         produto_id: DataTypes.ARRAY(DataTypes.DECIMAL),
       },

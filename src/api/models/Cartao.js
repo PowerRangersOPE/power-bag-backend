@@ -2,26 +2,40 @@ const { Model, DataTypes } = require('sequelize');
 
 class Cartao extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         numero: DataTypes.STRING,
         nome: DataTypes.STRING,
         cpf: DataTypes.STRING,
         validade: DataTypes.STRING,
-        cliente_id: DataTypes.INTEGER,
       },
       {
         sequelize,
         freezeTableName: true,
         modelName: 'Cartao',
         tableName: 'cartao',
-        classMethods: {
-          associate: (model) => {
-            Cartao.belongsTo(model.Cliente, { foreignKey: 'cliente_id' });
-          },
-        },
       }
     );
+  }
+
+  /**
+   * Create associate with model Cliente
+   * the foreingKey was create on Migrate
+   * 'as' for rename for 'cliente'
+   */
+
+  static associate(models) {
+    this.belongsTo(models.Cliente, {
+      foreignKey: 'cliente_id',
+      as: 'cliente',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

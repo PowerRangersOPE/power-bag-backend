@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class Produto extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         valor: DataTypes.STRING,
         tipo: DataTypes.STRING,
         genero: DataTypes.STRING,

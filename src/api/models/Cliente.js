@@ -2,8 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 
 class Cliente extends Model {
   static init(sequelize) {
-    super.init(
+    return super.init(
       {
+        id: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          primaryKey: true,
+        },
         nome: DataTypes.STRING,
         email: DataTypes.STRING,
         cpf: DataTypes.STRING,
@@ -13,24 +18,42 @@ class Cliente extends Model {
         dat_nasc: DataTypes.STRING,
         status: DataTypes.STRING,
         pontuacao: DataTypes.STRING,
-        cartao_id: DataTypes.INTEGER,
-        endereco_id: DataTypes.INTEGER,
-        perfil_id: DataTypes.INTEGER,
       },
       {
         sequelize,
-        freezeTableName: true,
         modelName: 'Cliente',
         tableName: 'cliente',
-        classMethods: {
-          associate: (model) => {
-            Cliente.belongsTo(model.Cartao, { foreignKey: 'cartao_id' });
-            Cliente.belongsTo(model.Endereco, { foreignKey: 'endereco_id' });
-            Cliente.belongsTo(model.Perfil, { foreignKey: 'perfil_id' });
-          },
-        },
       }
     );
+  }
+
+  /**
+   * Create associate for Cartao, Endereco and Perfil Model
+   * For Cliente Model ins't necessery criate column
+   * on migrate for below associates
+   */
+
+  static associate(models) {
+    this.hasOne(models.Cartao, {
+      foreignKey: 'cliente_id',
+      as: 'cartao',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+
+    this.hasOne(models.Endereco, {
+      foreignKey: 'cliente_id',
+      as: 'endereco',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+
+    this.hasOne(models.Perfil, {
+      foreignKey: 'cliente_id',
+      as: 'perfil',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

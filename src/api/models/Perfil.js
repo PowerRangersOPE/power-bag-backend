@@ -35,6 +35,12 @@ class Perfil extends Model {
     );
   }
 
+  /**
+   * Create associate with model Cliente
+   * the foreingKey was create on Migrate
+   * 'as' for rename for 'cliente'
+   */
+
   static associate(models) {
     this.belongsTo(models.Cliente, {
       foreignKey: 'cliente_id',

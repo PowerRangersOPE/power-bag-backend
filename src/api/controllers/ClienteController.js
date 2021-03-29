@@ -3,6 +3,10 @@ const Cliente = require('../models/Cliente');
 class ClienteController {
   async index(req, res) {
     try {
+      /**
+       * Include associations with others tables
+       * use the tables name
+       */
       const cliente = await Cliente.findAll({
         include: [
           { association: 'cartao' },

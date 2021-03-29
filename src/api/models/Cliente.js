@@ -27,6 +27,12 @@ class Cliente extends Model {
     );
   }
 
+  /**
+   * Create associate for Cartao, Endereco and Perfil Model
+   * For Cliente Model ins't necessery criate column
+   * on migrate for below associates
+   */
+
   static associate(models) {
     this.hasOne(models.Cartao, {
       foreignKey: 'cliente_id',

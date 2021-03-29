@@ -28,7 +28,12 @@ class Cliente extends Model {
   }
 
   static associate(models) {
-    this.associate = this.hasOne(models.Cartao);
+    this.associate = this.hasOne(models.Cartao, {
+      foreignKey: 'cliente_id',
+      as: 'cartao',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

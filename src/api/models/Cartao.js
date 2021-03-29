@@ -13,7 +13,6 @@ class Cartao extends Model {
         nome: DataTypes.STRING,
         cpf: DataTypes.STRING,
         validade: DataTypes.STRING,
-        cliente_id: DataTypes.INTEGER,
       },
       {
         sequelize,
@@ -25,7 +24,12 @@ class Cartao extends Model {
   }
 
   static associate(models) {
-    this.associate = this.hasOne(models.Cliente);
+    this.belongsTo(models.Cliente, {
+      foreignKey: 'cliente_id',
+      as: 'cliente',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

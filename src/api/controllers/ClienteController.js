@@ -4,7 +4,11 @@ class ClienteController {
   async index(req, res) {
     try {
       const cliente = await Cliente.findAll({
-        include: [{ association: 'cartao' }, { association: 'endereco' }],
+        include: [
+          { association: 'cartao' },
+          { association: 'endereco' },
+          { association: 'perfil' },
+        ],
       });
       return res.json(cliente);
     } catch (err) {

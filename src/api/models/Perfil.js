@@ -31,13 +31,17 @@ class Perfil extends Model {
         freezeTableName: true,
         modelName: 'Perfil',
         tableName: 'perfil',
-        classMethods: {
-          associate: (model) => {
-            Perfil.belongsTo(model.Cliente, { foreignKey: 'cliente_id' });
-          },
-        },
       }
     );
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Cliente, {
+      foreignKey: 'cliente_id',
+      as: 'cliente',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

@@ -41,6 +41,13 @@ class Cliente extends Model {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
+
+    this.hasOne(models.Perfil, {
+      foreignKey: 'cliente_id',
+      as: 'perfil',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

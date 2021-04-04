@@ -19,14 +19,17 @@ class Bag extends Model {
         freezeTableName: true,
         modelName: 'Bag',
         tableName: 'bag',
-        classMethods: {
-          associate: (model) => {
-            Bag.hasMany(model.Cliente, { foreignKey: 'cliente_id' });
-            Bag.belongsTo(model.ItensBag, { foreignKey: 'itensBag_id' });
-          },
-        },
       }
     );
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Cliente, {
+      foreignKey: 'cliente_id',
+      as: 'cliente',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

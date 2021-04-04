@@ -54,6 +54,13 @@ class Cliente extends Model {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
+
+    this.hasOne(models.Bag, {
+      foreignKey: 'cliente_id',
+      as: 'bag',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

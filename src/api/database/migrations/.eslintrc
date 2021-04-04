@@ -1,6 +1,7 @@
 {
     "rules": {
     "indent": "off",
-    "prettier/prettier": "off"
+    "prettier/prettier": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }

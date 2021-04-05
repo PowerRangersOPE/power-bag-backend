@@ -1,20 +1,24 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const { resolve } = require('path');
 
 class CreatePDF {
   constructor() {
     this.produtos = [];
   }
 
-  //   formatProdutos() {
-  //     const formatedProdutos = this.produtos.map((produto) => ({}));
-  //   }
-
   execute(produtos) {
-    this.produtos = produtos;
+    const path = resolve(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'temp',
+      'ProdutosParaBag.pdf'
+    );
 
     const pdfDoc = new PDFDocument();
-    pdfDoc.pipe(fs.createWriteStream('ProdutosParaBag.pdf'));
+    pdfDoc.pipe(fs.createWriteStream(path));
     pdfDoc.fontSize(30).text('Lista de produtos');
     pdfDoc.moveDown();
     produtos.map((produto) => {

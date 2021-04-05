@@ -1,6 +1,6 @@
 class FindAllClienteService {
-  constructor(cliente) {
-    this.cliente = cliente;
+  constructor(modelCliente) {
+    this.cliente = modelCliente;
   }
 
   /**

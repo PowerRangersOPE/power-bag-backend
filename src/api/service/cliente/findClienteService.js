@@ -1,10 +1,16 @@
 class FindClienteService {
-  constructor(cliente) {
-    this.cliente = cliente;
+  constructor(modelCliente) {
+    this.cliente = modelCliente;
   }
 
   async execute(id) {
-    const foundClient = await this.cliente.findByPk(id);
+    const foundClient = await this.cliente.findByPk(id, {
+      include: [
+        { association: 'cartao' },
+        { association: 'endereco' },
+        { association: 'perfil' },
+      ],
+    });
 
     if (!foundClient) throw new Error('Cliente not found');
 

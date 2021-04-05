@@ -1,6 +1,6 @@
 class CreateClienteService {
-  constructor(cliente) {
-    this.cliente = cliente;
+  constructor(modelCliente) {
+    this.cliente = modelCliente;
   }
 
   async execute(body) {

@@ -1,5 +1,6 @@
 const Bag = require('../models/Bag');
-const ItensBag = require('../models/ItensBag');
+
+const { createBag } = require('../service/bag');
 
 class bagController {
   async index(req, res) {
@@ -22,9 +23,9 @@ class bagController {
 
   async store(req, res) {
     try {
-      const { clientId } = req;
+      const { clienteId } = req;
 
-      const bag = await Bag.create(req.body);
+      const bag = await createBag.execute(clienteId);
       return res.json(bag);
     } catch (err) {
       return res.status(400).json({ error: err.message });

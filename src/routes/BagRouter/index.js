@@ -6,9 +6,9 @@ const bagController = new BagController();
 
 const router = new Router();
 
-console.log('Refatorar depois de implementar o login');
+console.log('(BagRouter) Refatorar depois de implementar o login');
 function validateToken(req, res, next) {
-  req.clienteId = '9ac1dc88-a3bd-484f-901c-b853560e1ac8';
+  req.clienteId = 'bf9f7a80-b2cc-4159-937e-f1fa3eda17ef';
   next();
 }
 

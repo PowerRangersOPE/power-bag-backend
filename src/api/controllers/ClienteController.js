@@ -1,19 +1,15 @@
-const Cliente = require('../models/Cliente');
+const {
+  findCliente,
+  findAllClientes,
+  createCliente,
+  updateCliente,
+  deleteCliente,
+} = require('../service/cliente');
 
 class ClienteController {
   async index(req, res) {
     try {
-      /**
-       * Include associations with others tables
-       * use the tables name
-       */
-      const cliente = await Cliente.findAll({
-        include: [
-          { association: 'cartao' },
-          { association: 'endereco' },
-          { association: 'perfil' },
-        ],
-      });
+      const cliente = await findAllClientes.execute();
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -22,7 +18,7 @@ class ClienteController {
 
   async show(req, res) {
     try {
-      const cliente = await Cliente.findByPk(req.params.id);
+      const cliente = await findCliente.execute(req.params.id);
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -31,7 +27,7 @@ class ClienteController {
 
   async store(req, res) {
     try {
-      const cliente = await Cliente.create(req.body);
+      const cliente = await createCliente.execute(req.body);
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -40,9 +36,8 @@ class ClienteController {
 
   async update(req, res) {
     try {
-      let cliente = await Cliente.findByPk(req.params.id);
-      cliente = await cliente.update(req.body);
-      return res.json(cliente);
+      const [, cliente] = await updateCliente.execute(req.params.id, req.body);
+      return res.status(201).json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
@@ -50,8 +45,7 @@ class ClienteController {
 
   async destroy(req, res) {
     try {
-      let cliente = await Cliente.findByPk(req.params.id);
-      cliente = await cliente.destroy(req.body);
+      const cliente = await deleteCliente.execute(req.params.id);
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });

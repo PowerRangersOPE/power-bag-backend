@@ -21,6 +21,9 @@ class PerfilController {
 
   async store(req, res) {
     try {
+      console.log(
+        '(PerfilController) Alterar cadastro: cor, necessidade, tipos'
+      );
       const perfil = await Perfil.create(req.body);
       return res.json(perfil);
     } catch (err) {

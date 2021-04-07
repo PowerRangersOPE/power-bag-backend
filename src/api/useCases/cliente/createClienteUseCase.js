@@ -1,4 +1,4 @@
-class CreateClienteService {
+class createClienteUseCase {
   constructor(modelCliente) {
     this.cliente = modelCliente;
   }
@@ -12,4 +12,4 @@ class CreateClienteService {
   }
 }
 
-module.exports = CreateClienteService;
+module.exports = createClienteUseCase;

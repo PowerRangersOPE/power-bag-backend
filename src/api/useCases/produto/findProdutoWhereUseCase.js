@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 
-class FindProdutoWhere {
+class findProdutoWhereUseCase {
   constructor(modelProduto) {
     this.produto = modelProduto;
   }
@@ -24,4 +24,4 @@ class FindProdutoWhere {
   }
 }
 
-module.exports = FindProdutoWhere;
+module.exports = findProdutoWhereUseCase;

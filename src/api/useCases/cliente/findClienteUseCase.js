@@ -1,4 +1,4 @@
-class FindClienteService {
+class findClienteUseCase {
   constructor(modelCliente) {
     this.cliente = modelCliente;
   }
@@ -18,4 +18,4 @@ class FindClienteService {
   }
 }
 
-module.exports = FindClienteService;
+module.exports = findClienteUseCase;

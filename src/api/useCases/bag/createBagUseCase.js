@@ -1,14 +1,14 @@
-class CreateBagService {
+class createBagUseCase {
   constructor(
     modelBag,
     functionfindCliente,
-    functionfindProdutoWhere,
-    functionCreatePDF
+    functionfindProdutoWhereUseCase,
+    functioncreatePDFUseCase
   ) {
     this.bag = modelBag;
     this.findCliente = functionfindCliente;
-    this.findProdutos = functionfindProdutoWhere;
-    this.createPDF = functionCreatePDF;
+    this.findProdutos = functionfindProdutoWhereUseCase;
+    this.createPDFUseCase = functioncreatePDFUseCase;
   }
 
   async execute(clienteId) {
@@ -42,7 +42,7 @@ class CreateBagService {
         optionalConditionals
       );
 
-      this.createPDF.execute(produtos);
+      this.createPDFUseCase.execute(produtos);
 
       return produtos;
     } catch (error) {
@@ -51,4 +51,4 @@ class CreateBagService {
   }
 }
 
-module.exports = CreateBagService;
+module.exports = createBagUseCase;

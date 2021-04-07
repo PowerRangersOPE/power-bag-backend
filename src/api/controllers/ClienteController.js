@@ -4,7 +4,7 @@ const {
   createCliente,
   updateCliente,
   deleteCliente,
-} = require('../service/cliente');
+} = require('../useCases/cliente');
 
 class ClienteController {
   async index(req, res) {

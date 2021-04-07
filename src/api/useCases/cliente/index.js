@@ -1,10 +1,10 @@
 const Cliente = require('../../models/Cliente');
 
-const FindCliente = require('./findClienteService');
-const FindAllClientes = require('./findAllClienteService');
-const CreateCliente = require('./createClienteService');
-const UpdateCliente = require('./updateClienteService');
-const DeleteCliente = require('./deleteClienteService');
+const FindCliente = require('./findClienteUseCase');
+const FindAllClientes = require('./findAllClienteUseCase');
+const CreateCliente = require('./createClienteUseCase');
+const UpdateCliente = require('./updateClienteUseCase');
+const DeleteCliente = require('./deleteClienteUseCase');
 
 const findCliente = new FindCliente(Cliente);
 const findAllClientes = new FindAllClientes(Cliente);

@@ -1,4 +1,4 @@
-class DeleteClienteService {
+class deleteClienteUseCase {
   constructor(modelCliente) {
     this.cliente = modelCliente;
   }
@@ -14,4 +14,4 @@ class DeleteClienteService {
   }
 }
 
-module.exports = DeleteClienteService;
+module.exports = deleteClienteUseCase;

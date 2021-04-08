@@ -1,38 +1,58 @@
 {
-  "name": "power-bag-backend",
-  "version": "1.0.0",
-  "description": "API for manager garment bags",
-  "main": "src/app.js",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "dev": "nodemon src/server.js",
-    "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
-    "postinstall": "husky install",
-    "prepare": "husky install"
-  },
-  "author": "Power Rangers Squad",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "husky": "^5.2.0",
-    "nodemon": "^2.0.7",
-    "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3",
-    "pinst": "^2.1.6",
-    "sequelize-cli": "^6.2.0"
-  },
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "express": "^4.17.1",
-    "pdfkit": "^0.12.0",
-    "prettier": "^2.2.1",
-    "sequelize": "^6.5.0",
-    "sqlite3": "^5.0.2",
-    "uuid": "^8.3.2"
-  }
+    "name": "power-bag-backend",
+    "version": "1.0.0",
+    "description": "API for manager garment bags",
+    "main": "src/app.js",
+    "private": true,
+    "scripts": {
+        "test": "yarn test:coverage",
+        "test:unit": "mocha --recursive src/tests/**/**/*.test.js",
+        "test:coverage": "nyc --reporter=text --all mocha --recursive src/tests/**/**/*.test.js",
+        "dev": "nodemon src/server.js",
+        "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
+        "postinstall": "husky install",
+        "prepare": "husky install"
+    },
+    "author": "Power Rangers Squad",
+    "license": "ISC",
+    "devDependencies": {
+        "chai": "^4.3.4",
+        "eslint": "^5.16.0",
+        "husky": "^5.2.0",
+        "mocha": "^8.3.2",
+        "nodemon": "^2.0.7",
+        "nyc": "^15.1.0",
+        "pg": "^8.5.1",
+        "pg-hstore": "^2.3.3",
+        "pinst": "^2.1.6",
+        "sequelize-cli": "^6.2.0",
+        "sinon": "^10.0.0"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "eslint-config-airbnb-base": "^14.2.1",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-prettier": "^3.3.1",
+        "express": "^4.17.1",
+        "pdfkit": "^0.12.0",
+        "prettier": "^2.2.1",
+        "sequelize": "^6.5.0",
+        "sqlite3": "^5.0.2",
+        "uuid": "^8.3.2"
+    },
+    "nyc": {
+        "check-coverage": true,
+        "lines": 100,
+        "statements": 100,
+        "functions": 100,
+        "branches": 100,
+        "include": [
+            "**/useCases/**/*.js"
+        ],
+        "exlude": [
+            "test/**/*",
+            "coverage/**/*"
+        ]
+    }
 }

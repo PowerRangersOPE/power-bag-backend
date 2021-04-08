@@ -1,2 +1,3 @@
 *.sqlite
 ./src/database/migrations/*.js
+jest.*.*

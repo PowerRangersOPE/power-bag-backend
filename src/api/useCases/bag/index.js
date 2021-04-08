@@ -5,7 +5,12 @@ const { createPDFUseCase } = require('../pdf');
 
 const CreateBag = require('./createBagUseCase');
 
-const createBag = new CreateBag(Bag, findCliente, findProdutoWhereUseCase, createPDFUseCase);
+const createBag = new CreateBag(
+  Bag,
+  findCliente,
+  findProdutoWhereUseCase,
+  createPDFUseCase
+);
 
 module.exports = {
   createBag,

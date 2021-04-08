@@ -4,11 +4,15 @@ class createClienteUseCase {
   }
 
   async execute(body) {
-    const cliente = await this.cliente.create(body);
+    try {
+      const cliente = await this.cliente.create(body);
 
-    if (!cliente) throw new Error();
+      if (!cliente) throw new TypeError('Create cliente got error');
 
-    return cliente;
+      return cliente;
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

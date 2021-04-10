@@ -14,7 +14,7 @@ describe('Find Cliente UseCase', () => {
   });
 
   it('Should be return success', async () => {
-    findClienteUseCase = new FindClienteUseCase(modelCliente);
+    findClienteUseCase = new FindClienteUseCase({ modelCliente });
     const [result] = await findClienteUseCase.execute();
     expect(result).to.be.an('object');
     expect(result).to.have.property('endereco');
@@ -24,7 +24,7 @@ describe('Find Cliente UseCase', () => {
 
   it('Should be return error', async () => {
     modelCliente.findByPk = objSinon.spy(() => false);
-    findClienteUseCase = new FindClienteUseCase(modelCliente);
+    findClienteUseCase = new FindClienteUseCase({ modelCliente });
     try {
       await findClienteUseCase.execute();
     } catch (error) {

@@ -28,7 +28,7 @@ describe('Create Cliente UseCase', () => {
   });
 
   it('Should be return a new cliente', async () => {
-    createClienteUseCase = new CreateClienteUseCase(modelCliente);
+    createClienteUseCase = new CreateClienteUseCase({ modelCliente });
     const body = {
       nome: 'Ygor Mattos',
       email: 'ygormattos@gmail.com',
@@ -49,7 +49,7 @@ describe('Create Cliente UseCase', () => {
 
   it('Should be throw an error ', async () => {
     modelCliente.create = objSinon.spy(() => false);
-    createClienteUseCase = new CreateClienteUseCase(modelCliente);
+    createClienteUseCase = new CreateClienteUseCase({ modelCliente });
 
     try {
       await createClienteUseCase.execute();

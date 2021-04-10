@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
 
 class findProdutoWhereUseCase {
-  constructor(modelProduto) {
+  constructor({ modelProduto }) {
     this.produto = modelProduto;
   }
 

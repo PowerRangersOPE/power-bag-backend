@@ -1,13 +1,8 @@
 class createBagUseCase {
-  constructor({
-    modelBag,
-    findCliente,
-    findProdutoWhereUseCase,
-    createPDFUseCase,
-  }) {
+  constructor({ modelBag, findCliente, findProdutoWhere, createPDFUseCase }) {
     this.bag = modelBag;
     this.findCliente = findCliente;
-    this.findProdutos = findProdutoWhereUseCase;
+    this.findProdutos = findProdutoWhere;
     this.createPDFUseCase = createPDFUseCase;
   }
 

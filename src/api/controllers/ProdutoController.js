@@ -1,5 +1,9 @@
 const Produto = require('../models/Produto');
 
+// const getProdutoUseCase = require('../useCases/produto');
+
+// const { findProdutoWhere } = getProdutoUseCase();
+
 class ProdutoController {
   async index(req, res) {
     try {

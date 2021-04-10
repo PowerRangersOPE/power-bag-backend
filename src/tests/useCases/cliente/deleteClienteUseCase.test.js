@@ -14,7 +14,7 @@ describe('Delete Cliente UseCase', () => {
   });
 
   it('Should be return success', async () => {
-    deleteClienteUseCase = new DeleteClienteUseCase(modelCliente);
+    deleteClienteUseCase = new DeleteClienteUseCase({ modelCliente });
     const result = await deleteClienteUseCase.execute();
     expect(result).to.be.an('array');
     expect(result.length).to.be.equal(1);
@@ -22,7 +22,7 @@ describe('Delete Cliente UseCase', () => {
 
   it('Should be return error', async () => {
     modelCliente.destroy = objSinon.spy(() => false);
-    deleteClienteUseCase = new DeleteClienteUseCase(modelCliente);
+    deleteClienteUseCase = new DeleteClienteUseCase({ modelCliente });
     try {
       await deleteClienteUseCase.execute();
     } catch (error) {

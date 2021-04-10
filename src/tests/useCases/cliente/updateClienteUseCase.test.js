@@ -14,7 +14,7 @@ describe('Update Cliente UseCase', () => {
   });
 
   it('Should be return success', async () => {
-    updateClienteUseCase = new UpdateClienteUseCase(modelCliente);
+    updateClienteUseCase = new UpdateClienteUseCase({ modelCliente });
     const [result] = await updateClienteUseCase.execute();
     expect(result).to.be.an('object');
     expect(result).to.have.property('endereco');
@@ -24,7 +24,7 @@ describe('Update Cliente UseCase', () => {
 
   it('Should be return error', async () => {
     modelCliente.update = objSinon.spy(() => false);
-    updateClienteUseCase = new UpdateClienteUseCase(modelCliente);
+    updateClienteUseCase = new UpdateClienteUseCase({ modelCliente });
     try {
       await updateClienteUseCase.execute();
     } catch (error) {

@@ -1,5 +1,5 @@
 class findAllClienteUseCase {
-  constructor(modelCliente) {
+  constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
 

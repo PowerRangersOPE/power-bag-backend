@@ -17,18 +17,18 @@ const newCliente = {
   createdAt: '2021-04-04T23:20:58.254Z',
 };
 
-let ModelClienteMock = {};
+let modelCliente = {};
 let createClienteUseCase;
 
 describe('Create Cliente UseCase', () => {
   beforeEach(() => {
-    ModelClienteMock = {
+    modelCliente = {
       create: objSinon.spy(() => Promise.resolve(newCliente)),
     };
-    createClienteUseCase = new CreateClienteUseCase(ModelClienteMock);
   });
 
   it('Should be return a new cliente', async () => {
+    createClienteUseCase = new CreateClienteUseCase(modelCliente);
     const body = {
       nome: 'Ygor Mattos',
       email: 'ygormattos@gmail.com',
@@ -47,13 +47,15 @@ describe('Create Cliente UseCase', () => {
     expect(result).to.have.property('updatedAt');
   });
 
-  it.skip('Should be throw an error ', async () => {
-    Object.assign(ModelClienteMock, {
-      create: () => false,
-    });
+  it('Should be throw an error ', async () => {
+    modelCliente.create = objSinon.spy(() => false);
+    createClienteUseCase = new CreateClienteUseCase(modelCliente);
 
-    const result = await createClienteUseCase.execute();
-    console.log(result);
-    expect(result).toThrowWithMessage(Error, 'Create cliente got error');
+    try {
+      await createClienteUseCase.execute();
+    } catch (error) {
+      expect(error).to.be.have.property('message');
+      expect(error.message).to.be.equals('Create cliente got error');
+    }
   });
 });

@@ -1,5 +1,5 @@
 class createClienteUseCase {
-  constructor(modelCliente) {
+  constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
 
@@ -7,7 +7,7 @@ class createClienteUseCase {
     try {
       const cliente = await this.cliente.create(body);
 
-      if (!cliente) throw new TypeError('Create cliente got error');
+      if (!cliente) throw new Error('Create cliente got error');
 
       return cliente;
     } catch (error) {

@@ -1,5 +1,5 @@
 class deleteClienteUseCase {
-  constructor(modelCliente) {
+  constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
 

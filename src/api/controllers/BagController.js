@@ -1,6 +1,8 @@
 const Bag = require('../models/Bag');
 
-const { createBag } = require('../useCases/bag');
+const getBagUseCase = require('../useCases/bag');
+
+const { createBag } = getBagUseCase();
 
 class bagController {
   async index(req, res) {

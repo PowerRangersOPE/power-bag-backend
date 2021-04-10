@@ -1,5 +1,5 @@
 class updateClienteUseCase {
-  constructor(modelCliente) {
+  constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
 

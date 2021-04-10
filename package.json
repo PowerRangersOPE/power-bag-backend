@@ -7,7 +7,7 @@
     "scripts": {
         "test": "yarn test:coverage",
         "test:unit": "mocha --recursive src/tests/**/**/*.test.js",
-        "test:coverage": "nyc --reporter=text --all mocha --recursive src/tests/**/**/*.test.js",
+        "test:coverage": "nyc --reporter=text --reporter=html --all mocha --recursive src/tests/**/**/*.test.js",
         "dev": "nodemon src/server.js",
         "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
         "postinstall": "husky install",

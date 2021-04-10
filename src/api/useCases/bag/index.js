@@ -2,7 +2,7 @@ const Bag = require('../../models/Bag');
 
 const { findCliente } = require('../cliente')();
 const { findProdutoWhere } = require('../produto')();
-const { createPDFUseCase } = require('../pdf');
+const { createPDFUseCase } = require('../pdf')();
 
 const CreateBag = require('./createBagUseCase');
 

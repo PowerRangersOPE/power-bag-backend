@@ -1,7 +1,5 @@
 const CreatePDFUseCase = require('./createPDFUseCase');
 
-const createPDFUseCase = new CreatePDFUseCase();
-
-module.exports = {
-  createPDFUseCase,
-};
+module.exports = () => ({
+  createPDFUseCase: new CreatePDFUseCase(),
+});

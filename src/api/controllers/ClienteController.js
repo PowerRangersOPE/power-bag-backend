@@ -1,10 +1,12 @@
+const getClienteUseCase = require('../useCases/cliente');
+
 const {
   findCliente,
   findAllClientes,
   createCliente,
   updateCliente,
   deleteCliente,
-} = require('../service/cliente');
+} = getClienteUseCase();
 
 class ClienteController {
   async index(req, res) {

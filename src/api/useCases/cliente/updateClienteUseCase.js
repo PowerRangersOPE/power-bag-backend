@@ -1,5 +1,5 @@
-class UpdateClienteService {
-  constructor(modelCliente) {
+class updateClienteUseCase {
+  constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
 
@@ -15,4 +15,4 @@ class UpdateClienteService {
   }
 }
 
-module.exports = UpdateClienteService;
+module.exports = updateClienteUseCase;

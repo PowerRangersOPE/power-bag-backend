@@ -2,7 +2,7 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const { resolve } = require('path');
 
-class CreatePDF {
+class createPDFUseCase {
   constructor() {
     this.produtos = [];
   }
@@ -43,4 +43,4 @@ class CreatePDF {
   }
 }
 
-module.exports = CreatePDF;
+module.exports = createPDFUseCase;

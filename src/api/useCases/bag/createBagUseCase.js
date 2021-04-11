@@ -1,9 +1,16 @@
 class createBagUseCase {
-  constructor({ modelBag, findCliente, findProdutoWhere, createPDFUseCase }) {
+  constructor({
+    modelBag,
+    findCliente,
+    findProdutoWhere,
+    createPDFUseCase,
+    sendEmail,
+  }) {
     this.bag = modelBag;
     this.findCliente = findCliente;
     this.findProdutos = findProdutoWhere;
     this.createPDFUseCase = createPDFUseCase;
+    this.sendEmail = sendEmail;
   }
 
   async execute(clienteId) {
@@ -37,7 +44,9 @@ class createBagUseCase {
         optionalConditionals
       );
 
-      this.createPDFUseCase.execute(produtos);
+      await this.createPDFUseCase.execute(produtos);
+
+      this.sendEmail.execute({ cliente });
 
       return produtos;
     } catch (error) {

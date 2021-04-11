@@ -1,0 +1,63 @@
+<style>
+    .container {
+        width: 800px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h2,
+    h3 {
+        padding: 0;
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+</style>
+
+
+<div class="container">
+    <h2><strong>Obaaa</strong>, temos uma nova solicitação de bag. </h2><br />
+
+    <h3>Dados do cliente</h3>
+    <ul>
+        <li>Nome: <strong>{{nome}}</strong></li>
+        <li>Email: <strong>{{email}}</strong></li>
+        <li>Celular: <strong>{{celular}}</strong></li>
+        <li>Endereço: </li>
+        <ul>
+            <li>Rua: <strong>{{rua}}</strong></li>
+            <li>Número: <strong>{{numero}}</strong></li>
+            <li>Bairro: <strong>{{bairro}}</strong></li>
+            <li><strong>{{cidade}}</strong> - <strong>{{uf}}</strong></li>
+            <li>CEP: <strong>{{cep}}</strong></li>
+        </ul>
+    </ul>
+
+    <label>Em <strong>anexo</strong> temos uma sugestão de roupas para enviar para esse cliente,</label>
+    <label>porém se quiser criar por conta propria, segue o perfil:</label><br />
+
+
+    <h3>Perfil</h3>
+    <ul>
+        <li>Gênero: <strong>{{genero}}</strong></li>
+        <li>Faixa etária: <strong>{{fx_etaria}}</strong></li>
+        <li>Necessidade: <strong>{{necessidade}}</strong></li>
+        <li>Cor: <strong>{{cor}}</strong></li>
+        <li>Tipo de estampa: <strong>{{tipo_estampa}}</strong></li>
+        <li>Tipo de tênis: <strong>{{tipo_tenis}}</strong></li>
+        <li>Tamanho do sapato: <strong>{{tamanho_sapato}}</strong></li>
+        <li>Tamanho da calça: <strong>{{tamanho_calca}}</strong></li>
+        <li>Tamanho da camisa: <strong>{{tamanho_camisa}}</strong></li>
+    </ul>
+
+    <br /><br />
+
+    <strong>Somos gratos por utilizar nosso serviço!</strong>
+    <h3>Equipe | <strong>Power Bag</strong></h3>
+
+</div>

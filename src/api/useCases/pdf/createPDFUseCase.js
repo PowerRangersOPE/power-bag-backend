@@ -7,7 +7,7 @@ class createPDFUseCase {
     this.produtos = [];
   }
 
-  execute(produtos) {
+  async execute(produtos) {
     const path = resolve(
       __dirname,
       '..',

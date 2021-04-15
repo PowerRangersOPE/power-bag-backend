@@ -18,8 +18,6 @@ class validateLogin {
 
       if (!match) throw new Error('Senha didnt match');
 
-      console.log(process.env.SECRET);
-
       const token = jwt.sign(
         {
           cliente: { id: clienteId, email: clienteEmail },

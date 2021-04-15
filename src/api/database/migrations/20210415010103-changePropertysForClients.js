@@ -4,6 +4,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       });
+      await queryInterface.changeColumn('cliente', 'email', {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      });
       await queryInterface.changeColumn('cliente', 'cpf', {
         type: Sequelize.STRING,
         allowNull: true
@@ -38,6 +43,11 @@ module.exports = {
     await queryInterface.changeColumn('cliente', 'nome', {
         type: Sequelize.STRING,
         allowNull: false
+      });
+      await queryInterface.changeColumn('cliente', 'email', {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: false,
       });
       await queryInterface.changeColumn('cliente', 'cpf', {
         type: Sequelize.STRING,

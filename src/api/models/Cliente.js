@@ -1,8 +1,9 @@
+const { hash } = require('bcrypt');
 const { Model, DataTypes } = require('sequelize');
 
 class Cliente extends Model {
   static init(sequelize) {
-    return super.init(
+    super.init(
       {
         id: {
           type: DataTypes.UUID,
@@ -26,6 +27,14 @@ class Cliente extends Model {
         tableName: 'cliente',
       }
     );
+
+    this.addHook('beforeSave', async (cliente) => {
+      if (cliente.senha) {
+        cliente.senha = await hash(cliente.senha, 8);
+      }
+    });
+
+    return this;
   }
 
   /**

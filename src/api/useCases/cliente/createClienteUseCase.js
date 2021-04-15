@@ -9,7 +9,7 @@ class createClienteUseCase {
 
       if (!cliente) throw new Error('Create cliente got error');
 
-      return { Created: true };
+      return { Created: true, clienteID: cliente.id };
     } catch (error) {
       throw error;
     }

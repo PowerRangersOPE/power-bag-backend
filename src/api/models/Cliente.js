@@ -11,6 +11,7 @@ class Cliente extends Model {
         },
         nome: DataTypes.STRING,
         email: DataTypes.STRING,
+        senha: DataTypes.STRING,
         cpf: DataTypes.STRING,
         identificacao: DataTypes.STRING,
         tel_cel1: DataTypes.STRING,

@@ -7,10 +7,10 @@ const bagController = new BagController();
 
 const router = new Router();
 
-router.get('/bag', bagController.index);
-router.get('/bag/:id', bagController.show);
+router.get('/bag', verifyToken, bagController.index);
+router.get('/bag/:id', verifyToken, bagController.show);
 router.post('/bag', verifyToken, bagController.store);
-router.put('/bag/:id', bagController.update);
-router.delete('/bag/:id', bagController.destroy);
+router.put('/bag/:id', verifyToken, bagController.update);
+router.delete('/bag/:id', verifyToken, bagController.destroy);
 
 module.exports = router;

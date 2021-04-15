@@ -25,8 +25,8 @@ class bagController {
 
   async store(req, res) {
     try {
-      const { clienteId } = req;
-      const bag = await createBag.execute(clienteId);
+      const { cliente } = req;
+      const bag = await createBag.execute(cliente);
       return res.json(bag);
     } catch (err) {
       return res.status(400).json({ error: err.message });

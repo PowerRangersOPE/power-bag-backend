@@ -6,7 +6,7 @@ class updateClienteUseCase {
   async execute(id, body) {
     const cliente = await this.cliente.update(body, {
       where: { id },
-      returning: true,
+      returning: false,
     });
 
     if (!cliente) throw new Error();

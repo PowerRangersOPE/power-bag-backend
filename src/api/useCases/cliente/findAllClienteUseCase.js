@@ -14,6 +14,7 @@ class findAllClienteUseCase {
         { association: 'endereco' },
         { association: 'perfil' },
       ],
+      attributes: { exclude: ['senha', 'id', 'createdAt', 'updatedAt'] },
     });
 
     if (!clientes) throw new Error('Cliente not found');

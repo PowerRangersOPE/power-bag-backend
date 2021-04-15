@@ -13,9 +13,9 @@ class createBagUseCase {
     this.sendEmail = sendEmail;
   }
 
-  async execute(clienteId) {
+  async execute({ id }) {
     try {
-      const cliente = await this.findCliente.execute(clienteId);
+      const cliente = await this.findCliente.execute(id);
 
       if (!cliente) throw new Error('Cliente not found');
 

@@ -9,7 +9,7 @@
         "test:unit": "mocha --recursive src/tests/**/**/*.test.js",
         "test:coverage": "nyc --reporter=text --reporter=html --all mocha --recursive src/tests/**/**/*.test.js",
         "dev": "nodemon src/server.js",
-        "start": "node src/server.js",
+        "start": "npx sequelize-cli db:migrate node src/server.js",
         "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
         "postinstall": "husky install",
         "prepare": "husky install"

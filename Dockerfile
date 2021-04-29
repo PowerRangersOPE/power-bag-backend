@@ -10,4 +10,8 @@ COPY . .
 
 EXPOSE 3333
 
+RUN npm run db:create
+
+RUN npm run db:migrate
+
 CMD ["npm","start"]

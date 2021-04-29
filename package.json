@@ -9,9 +9,8 @@
         "test:unit": "mocha --recursive src/tests/**/**/*.test.js",
         "test:coverage": "nyc --reporter=text --reporter=html --all mocha --recursive src/tests/**/**/*.test.js",
         "dev": "nodemon src/server.js",
-        "db:create": "npx sequelize-cli db:create power-bag",
         "db:migrate": "npx sequelize-cli db:migrate",
-        "start": "npm run db:create && npm run db:migrate && node src/server.js",
+        "start": "npm run db:migrate && node src/server.js",
         "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
         "postinstall": "husky install",
         "prepare": "husky install"

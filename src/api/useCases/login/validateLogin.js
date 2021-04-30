@@ -28,7 +28,7 @@ class validateLogin {
         }
       );
 
-      return { token };
+      return { token, clienteId };
     } catch (error) {
       throw error;
     }

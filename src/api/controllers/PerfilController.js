@@ -1,37 +1,35 @@
-const Perfil = require('../models/Perfil');
+const getPerfilUseCase = require('../useCases/perfil');
+
+const { findPerfilCliente, createPerfil, updatePerfil } = getPerfilUseCase();
 
 class PerfilController {
 
   async show(req, res) {
     try {
-      const perfil = await Perfil.findByPk(req.params.id);
+      const perfil = await findPerfilCliente.execute(req.cliente.id);
       return res.json(perfil);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
 
-//   async store(req, res) {
-//     try {
-//       console.log(
-//         '(PerfilController) Alterar cadastro: cor, necessidade, tipos'
-//       );
-//       const perfil = await Perfil.create(req.body);
-//       return res.json(perfil);
-//     } catch (err) {
-//       return res.status(400).json({ error: err.message });
-//     }
-//   }
+  async store(req, res) {
+    try {
+      const perfil = await createPerfil.execute(req.cliente.id, req.body);
+      return res.json(perfil);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
 
-//   async update(req, res) {
-//     try {
-//       let perfil = await Perfil.findByPk(req.params.id);
-//       perfil = await perfil.update(req.body);
-//       return res.json(perfil);
-//     } catch (err) {
-//       return res.status(400).json({ error: err.message });
-//     }
-//   }
+  async update(req, res) {
+    try {
+      const perfil = await updatePerfil.execute(req.cliente.id, req.body);
+      return res.json(perfil);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
 }
 
 module.exports = PerfilController;

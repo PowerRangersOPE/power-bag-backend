@@ -9,8 +9,6 @@ class createEndereco {
             cliente_id: clienteID, ...endereco
        };
 
-       console.log(body)
-
       const clienteEndereco = await this.endereco.create(body);
 
       if (!clienteEndereco) throw new Error('Create endereco got error');

@@ -3,16 +3,16 @@ class updateEndereco {
       this.endereco = modelEndereco;
     }
   
-    async execute(clienteID, updatedEndereco) {
+    async execute(clienteID, newEndereco) {
       try {
-        const enderecoAlreadyUpdated = await this.endereco.update(updatedEndereco, {
+        const updatedEndereco = await this.endereco.update(newEndereco, {
             where: { cliente_id: clienteID },
             returning: true,
           });
   
-        if (!enderecoAlreadyUpdated) throw new Error('endereco not found');
+        if (!updatedEndereco) throw new Error('endereco not found');
 
-        const [, [endereco]] = enderecoAlreadyUpdated;
+        const [, [endereco]] = updatedEndereco;
   
         return endereco;
       } catch (error) {

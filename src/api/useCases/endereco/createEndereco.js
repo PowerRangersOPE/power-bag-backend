@@ -9,11 +9,29 @@ class createEndereco {
             cliente_id: clienteID, ...endereco
        };
 
-      const clienteEndereco = await this.endereco.create(body);
+       const foundEndereco = await this.endereco.findOne({
+        where: { cliente_id: clienteID },
+      });
 
-      if (!clienteEndereco) throw new Error('Create endereco got error');
+      if (foundEndereco) {
 
-      return { created: true, clienteEndereco };
+        const newEndereco = await this.endereco.update(endereco, {
+            where: { cliente_id: clienteID },
+            returning: true,
+          });
+  
+        if (!newEndereco) throw new Error('endereco not found');
+
+        const [, [updatedEndereco]] = newEndereco;
+
+        return { updated: true, endereco: updatedEndereco };
+      } 
+
+      const createdEndereco = await this.endereco.create(body);
+
+      if (!createdEndereco) throw new Error('Create endereco got error');
+
+      return { created: true, endereco: createdEndereco };
     } catch (error) {
       throw error;
     }

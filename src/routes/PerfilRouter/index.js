@@ -7,10 +7,8 @@ const perfilController = new PerfilController();
 
 const router = new Router();
 
-router.get('/perfil', verifyToken, perfilController.index);
-router.get('/perfil/:id', verifyToken, perfilController.show);
-router.post('/perfil', verifyToken, perfilController.store);
-router.put('/perfil/:id', verifyToken, perfilController.update);
-router.delete('/perfil/:id', verifyToken, perfilController.destroy);
+router.get('/perfil', verifyToken, perfilController.show);
+// router.post('/perfil', verifyToken, perfilController.store);
+// router.put('/perfil/:id', verifyToken, perfilController.update);
 
 module.exports = router;

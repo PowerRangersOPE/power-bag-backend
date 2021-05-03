@@ -14,7 +14,7 @@ class EnderecoController {
 
   async store(req, res) {
     try {
-      const endereco = await createEndereco.execute(req.params.clienteid, req.body);
+      const endereco = await createEndereco.execute(req.cliente.id, req.body);
       return res.json(endereco);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -23,7 +23,7 @@ class EnderecoController {
 
     async update(req, res) {
       try {
-        const endereco = await updateEndereco.execute(req.params.clienteid, req.body);
+        const endereco = await updateEndereco.execute(req.cliente.id, req.body);
         return res.json(endereco);
       } catch (err) {
         return res.status(400).json({ error: err.message });

@@ -7,7 +7,7 @@ const enderecoController = new EnderecoController();
 
 const router = new Router();
 
-router.get('/endereco/', verifyToken, enderecoController.show);
+router.get('/endereco', verifyToken, enderecoController.show);
 router.post('/endereco', verifyToken, enderecoController.store);
 router.put('/endereco', verifyToken, enderecoController.update);
 

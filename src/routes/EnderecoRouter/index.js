@@ -7,10 +7,8 @@ const enderecoController = new EnderecoController();
 
 const router = new Router();
 
-router.get('/endereco', verifyToken, enderecoController.index);
 router.get('/endereco/:id', verifyToken, enderecoController.show);
-router.post('/endereco', verifyToken, enderecoController.store);
-router.put('/endereco/:id', verifyToken, enderecoController.update);
-router.delete('/endereco/:id', verifyToken, enderecoController.destroy);
+// router.post('/endereco', verifyToken, enderecoController.store);
+// router.put('/endereco/:id', verifyToken, enderecoController.update);
 
 module.exports = router;

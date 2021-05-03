@@ -5,11 +5,11 @@ class findEnderecoCliente {
 
   async execute(clienteID) {
     try {
-      const foundClient = await this.endereco.findOne({
+      const foundEndereco = await this.endereco.findOne({
         where: { cliente_id: clienteID },
       });
 
-      if (!foundClient) throw new Error('endereco not found');
+      if (!foundEndereco) throw new Error('endereco not found');
 
       return foundClient;
     } catch (error) {

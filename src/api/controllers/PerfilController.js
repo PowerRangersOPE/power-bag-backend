@@ -1,18 +1,12 @@
-const Perfil = require('../models/Perfil');
+const getPerfilUseCase = require('../useCases/perfil');
+
+const { findPerfilCliente, createPerfil, updatePerfil } = getPerfilUseCase();
 
 class PerfilController {
-  async index(req, res) {
-    try {
-      const perfil = await Perfil.findAll();
-      return res.json(perfil);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
 
   async show(req, res) {
     try {
-      const perfil = await Perfil.findByPk(req.params.id);
+      const perfil = await findPerfilCliente.execute(req.cliente.id);
       return res.json(perfil);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -21,10 +15,7 @@ class PerfilController {
 
   async store(req, res) {
     try {
-      console.log(
-        '(PerfilController) Alterar cadastro: cor, necessidade, tipos'
-      );
-      const perfil = await Perfil.create(req.body);
+      const perfil = await createPerfil.execute(req.cliente.id, req.body);
       return res.json(perfil);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -33,18 +24,7 @@ class PerfilController {
 
   async update(req, res) {
     try {
-      let perfil = await Perfil.findByPk(req.params.id);
-      perfil = await perfil.update(req.body);
-      return res.json(perfil);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
-
-  async destroy(req, res) {
-    try {
-      let perfil = await Perfil.findByPk(req.params.id);
-      perfil = await perfil.destroy(req.body);
+      const perfil = await updatePerfil.execute(req.cliente.id, req.body);
       return res.json(perfil);
     } catch (err) {
       return res.status(400).json({ error: err.message });

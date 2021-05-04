@@ -61,7 +61,7 @@ class createBagUseCase {
         optionalConditionals
       );
 
-        await this.createPDFUseCase.execute(produtos, id);
+        // await this.createPDFUseCase.execute(produtos, id);
 
         console.log('create PDF');
 

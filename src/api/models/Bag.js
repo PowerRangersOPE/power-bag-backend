@@ -31,6 +31,13 @@ class Bag extends Model {
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
+
+    this.hasOne(models.ItensBag, {
+        foreignKey: 'bag_id',
+        as: 'itensBag',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
   }
 }
 

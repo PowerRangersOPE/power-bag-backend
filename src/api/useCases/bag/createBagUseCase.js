@@ -3,12 +3,14 @@ const { resolve } = require('path');
 class createBagUseCase {
   constructor({
     modelBag,
+    modelItensBag,
     findCliente,
     findProdutoWhere,
     createPDFUseCase,
-    sendEmail,
+    sendEmail
   }) {
     this.bag = modelBag;
+    this.itensBag = modelItensBag;
     this.findCliente = findCliente;
     this.findProdutos = findProdutoWhere;
     this.createPDFUseCase = createPDFUseCase;
@@ -31,6 +33,13 @@ class createBagUseCase {
 
 //     return buffer;
 //   }
+
+  async createItensBag(produto, bag) {
+      await this.itensBag.create({
+        produto_id: produto.id,
+        bag_id: bag.id
+    })
+  }
 
   async execute({ id }) {
     try {
@@ -73,7 +82,9 @@ class createBagUseCase {
             cliente_id: id
         };
 
-      const bag = this.bag.create(bagBody);
+      const bag = await this.bag.create(bagBody);
+
+      await produtos.map(async produto => await this.createItensBag(produto, bag));
 
       this.sendEmail.execute({ cliente, id });
 

@@ -17,23 +17,6 @@ class createBagUseCase {
     this.sendEmail = sendEmail;
   }
 
-//   createPDFBuffer(clienteID) {
-//     const path = resolve(
-//         __dirname,
-//         '..',
-//         '..',
-//         '..',
-//         'temp',
-//         `ProdutosParaBag-${clienteID}.pdf`
-//       );
-    
-//     const buffer = fs.readFileSync(path, {
-//         encoding: 'base64',
-//     });
-
-//     return buffer;
-//   }
-
   async createItensBag(produto, bag) {
       await this.itensBag.create({
         produto_id: produto.id,
@@ -46,6 +29,8 @@ class createBagUseCase {
       const cliente = await this.findCliente.execute(id);
 
       if (!cliente) throw new Error('Cliente not found');
+
+      console.log('cliente', cliente);
 
       const {
         perfil: {
@@ -67,12 +52,18 @@ class createBagUseCase {
         { tamanho_camisa },
       ];
 
+      console.log('requiredConditionals', requiredConditionals);
+      console.log('optionalConditionals', optionalConditionals);
+
+
       const { produtos, totalValueProdutos } = await this.findProdutos.execute(
         requiredConditionals,
         optionalConditionals
       );
 
         await this.createPDFUseCase.execute(produtos, id);
+
+        console.log('create PDF');
 
         const bagBody = {
             status: 'criado',
@@ -84,9 +75,13 @@ class createBagUseCase {
 
       const bag = await this.bag.create(bagBody);
 
+      console.log('BAG', bag);
+
       await produtos.map(async produto => await this.createItensBag(produto, bag));
 
       this.sendEmail.execute({ cliente, id });
+
+      console.log('Enviar email');
 
       return bag;
     } catch (error) {

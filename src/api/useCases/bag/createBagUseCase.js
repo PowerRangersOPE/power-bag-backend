@@ -1,3 +1,5 @@
+const fs = require('fs');
+const { resolve } = require('path');
 class createBagUseCase {
   constructor({
     modelBag,
@@ -12,6 +14,23 @@ class createBagUseCase {
     this.createPDFUseCase = createPDFUseCase;
     this.sendEmail = sendEmail;
   }
+
+//   createPDFBuffer(clienteID) {
+//     const path = resolve(
+//         __dirname,
+//         '..',
+//         '..',
+//         '..',
+//         'temp',
+//         `ProdutosParaBag-${clienteID}.pdf`
+//       );
+    
+//     const buffer = fs.readFileSync(path, {
+//         encoding: 'base64',
+//     });
+
+//     return buffer;
+//   }
 
   async execute({ id }) {
     try {
@@ -39,16 +58,26 @@ class createBagUseCase {
         { tamanho_camisa },
       ];
 
-      const produtos = await this.findProdutos.execute(
+      const { produtos, totalValueProdutos } = await this.findProdutos.execute(
         requiredConditionals,
         optionalConditionals
       );
 
-      await this.createPDFUseCase.execute(produtos);
+        await this.createPDFUseCase.execute(produtos, id);
 
-      this.sendEmail.execute({ cliente });
+        const bagBody = {
+            status: 'criado',
+            observacoes: '',
+            valor: totalValueProdutos,
+            produtos_pdf: '',
+            cliente_id: id
+        };
 
-      return produtos;
+      const bag = this.bag.create(bagBody);
+
+      this.sendEmail.execute({ cliente, id });
+
+      return bag;
     } catch (error) {
       throw error;
     }

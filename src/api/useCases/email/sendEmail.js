@@ -20,7 +20,7 @@ class sendEmail {
    * tamanho_sapato, tamanho_calca, tamanho_camisa
    */
 
-  execute({ cliente }) {
+  execute({ cliente, id }) {
     const {
       nome,
       email,
@@ -89,7 +89,7 @@ class sendEmail {
             '..',
             '..',
             'temp',
-            'ProdutosParaBag.pdf'
+            `ProdutosParaBag-${id}.pdf`
           ),
         },
       ],

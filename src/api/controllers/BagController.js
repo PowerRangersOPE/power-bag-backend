@@ -2,7 +2,7 @@ const Bag = require('../models/Bag');
 
 const getBagUseCase = require('../useCases/bag');
 
-const { createBag } = getBagUseCase();
+const { createBag, findBag } = getBagUseCase();
 
 class bagController {
   async index(req, res) {
@@ -16,7 +16,7 @@ class bagController {
 
   async show(req, res) {
     try {
-      const bag = await Bag.findByPk(req.params.id);
+      const bag = await findBag.execute(req.cliente.id);
       return res.json(bag);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -43,15 +43,6 @@ class bagController {
     }
   }
 
-  async destroy(req, res) {
-    try {
-      let bag = await Bag.findByPk(req.params.id);
-      bag = await bag.destroy(req.body);
-      return res.json(bag);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
 }
 
 module.exports = bagController;

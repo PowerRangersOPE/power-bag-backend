@@ -15,22 +15,22 @@ class createBagUseCase {
     this.sendEmail = sendEmail;
   }
 
-  createPDFBuffer(clienteID) {
-    const path = resolve(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        'temp',
-        `ProdutosParaBag-${clienteID}.pdf`
-      );
+//   createPDFBuffer(clienteID) {
+//     const path = resolve(
+//         __dirname,
+//         '..',
+//         '..',
+//         '..',
+//         'temp',
+//         `ProdutosParaBag-${clienteID}.pdf`
+//       );
     
-    const buffer = fs.readFileSync(path, {
-        encoding: 'base64',
-    });
+//     const buffer = fs.readFileSync(path, {
+//         encoding: 'base64',
+//     });
 
-    return buffer;
-  }
+//     return buffer;
+//   }
 
   async execute({ id }) {
     try {
@@ -75,7 +75,7 @@ class createBagUseCase {
 
       const bag = this.bag.create(bagBody);
 
-      this.sendEmail.execute({ cliente });
+      this.sendEmail.execute({ cliente, id });
 
       return bag;
     } catch (error) {

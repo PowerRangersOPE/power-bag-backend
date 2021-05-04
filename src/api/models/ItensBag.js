@@ -9,23 +9,35 @@ class ItensBag extends Model {
           defaultValue: DataTypes.UUIDV4,
           primaryKey: true,
         },
-        bag_id: DataTypes.INTEGER,
-        produto_id: DataTypes.ARRAY(DataTypes.DECIMAL),
+        bag_id: DataTypes.STRING,
+        produto_id: DataTypes.STRING,
       },
       {
         sequelize,
         freezeTableName: true,
         modelName: 'ItensBag',
-        tableName: 'itensBag',
-        classMethods: {
-          associate: (model) => {
-            ItensBag.hasMany(model.Bag, { foreignKey: 'bag_id' });
-            ItensBag.hasMany(model.Produto, { foreignKey: 'produto_id' });
-          },
-        },
+        tableName: 'itensBag'
       }
     );
   }
+
+  static associate(models) {
+    this.belongsTo(models.Bag, {
+      foreignKey: 'bag_id',
+      as: 'bag',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+
+    this.belongsTo(models.Produto, {
+        foreignKey: 'produto_id',
+        as: 'produto',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
+  }
+
+
 }
 
 module.exports = ItensBag;

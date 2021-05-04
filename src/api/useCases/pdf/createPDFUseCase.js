@@ -7,14 +7,14 @@ class createPDFUseCase {
     this.produtos = [];
   }
 
-  async execute(produtos) {
+  async execute(produtos, clienteID) {
     const path = resolve(
       __dirname,
       '..',
       '..',
       '..',
       'temp',
-      'ProdutosParaBag.pdf'
+      `ProdutosParaBag-${clienteID}.pdf`
     );
 
     const pdfDoc = new PDFDocument();

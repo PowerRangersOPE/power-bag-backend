@@ -6,6 +6,7 @@ const { createPDFUseCase } = require('../pdf')();
 const { sendEmail } = require('../email')();
 
 const CreateBag = require('./createBagUseCase');
+const FindBag = require('./findBag');
 
 module.exports = (modelBag = Bag) => ({
   createBag: new CreateBag({
@@ -15,4 +16,5 @@ module.exports = (modelBag = Bag) => ({
     createPDFUseCase,
     sendEmail,
   }),
+  findBag : new FindBag({ modelBag }),
 });

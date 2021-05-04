@@ -111,3 +111,6 @@ dist
 
 # Temporary
 src/temp/*
+
+# Test
+test*.js

@@ -10,6 +10,9 @@ const router = new Router();
 router.get('/bag', verifyToken, bagController.index);
 router.get('/bag/detail', verifyToken, bagController.show);
 router.post('/bag', verifyToken, bagController.store);
-router.put('/bag/:id', verifyToken, bagController.update);
+
+/**
+ * Criar rota de update (rota tem que ser logada)
+ */
 
 module.exports = router;

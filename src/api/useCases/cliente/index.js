@@ -6,6 +6,7 @@ const FindAllClientes = require('./findAllClienteUseCase');
 const CreateCliente = require('./createClienteUseCase');
 const UpdateCliente = require('./updateClienteUseCase');
 const DeleteCliente = require('./deleteClienteUseCase');
+const ValidateClienteForBag = require('./validateClienteForBag');
 
 module.exports = (modelCliente = Cliente) => ({
   findCliente: new FindCliente({ modelCliente }),
@@ -14,4 +15,5 @@ module.exports = (modelCliente = Cliente) => ({
   createCliente: new CreateCliente({ modelCliente }),
   updateCliente: new UpdateCliente({ modelCliente }),
   deleteCliente: new DeleteCliente({ modelCliente }),
+  validateClienteForBag: new ValidateClienteForBag({ modelCliente }),
 });

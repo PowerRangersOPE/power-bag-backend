@@ -1,11 +1,11 @@
-const Bag = require('../models/Bag');
+
 
 const getBagUseCase = require('../useCases/bag');
 
 /**
  * importar função de useCase
  */
-const { createBag, findBag } = getBagUseCase();
+const { createBag, findBag, updateBag } = getBagUseCase();
 
 class bagController {
   async index(req, res) {
@@ -37,13 +37,10 @@ class bagController {
   }
 
   async update(req, res) {
-    try {
-        
-        /**
-         * Criar logica para chamar o useCase
-         * Retornar um resultado
-         */
-
+    
+    try{
+      const bagId = await  updateBag.execute(req.body);
+      return res.json(bagId);        
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

@@ -8,6 +8,7 @@ const { sendEmail } = require('../email')();
 
 const CreateBag = require('./createBagUseCase');
 const FindBag = require('./findBag');
+const UpdateBag = require('./updateBag');
 
 /** 
  * Importar e inserir a useCase de update
@@ -22,4 +23,6 @@ module.exports = (modelBag = Bag) => ({
     sendEmail,
   }),
   findBag : new FindBag({ modelBag }),
+  updateBag: new UpdateBag({ modelBag }),
+  
 });

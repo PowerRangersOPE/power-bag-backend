@@ -6,12 +6,23 @@ const {
   createCliente,
   updateCliente,
   deleteCliente,
+  validateClienteForBag
 } = getClienteUseCase();
 
 class ClienteController {
+
   async index(req, res) {
     try {
       const cliente = await findAllClientes.execute();
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+  
+  async validateForBag(req, res) {
+    try {
+      const cliente = await validateClienteForBag.execute(req.cliente.id);
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });

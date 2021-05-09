@@ -11,7 +11,7 @@ class findEnderecoCliente {
 
       if (!foundEndereco) throw new Error('endereco not found');
 
-      return foundClient;
+      return foundEndereco;
     } catch (error) {
       throw error;
     }

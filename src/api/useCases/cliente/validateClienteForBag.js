@@ -28,7 +28,7 @@ class validateClienteForBag {
   
       if (!foundClient) throw new Error('Cliente not found');
 
-      const validate = this.verifyClienteData(foundClient);
+      const validate = this.verifyClienteData(foundClient.toJSON());
   
       return { clienteID: id,  available: validate };
     }

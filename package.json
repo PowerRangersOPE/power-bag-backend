@@ -8,7 +8,7 @@
         "test": "yarn test:coverage",
         "test:unit": "mocha --recursive src/tests/**/**/*.test.js",
         "test:coverage": "nyc --reporter=text --reporter=html --all mocha --recursive src/tests/**/**/*.test.js",
-        "dev": "nodemon src/server.js",
+        "dev": "yarn db:migrate && nodemon --inspect=0.0.0.0 src/server.js",
         "db:migrate": "npx sequelize-cli db:migrate",
         "db:create": "npx sequelize-cli db:create power-bag",
         "start": "npm run db:migrate && node src/server.js",

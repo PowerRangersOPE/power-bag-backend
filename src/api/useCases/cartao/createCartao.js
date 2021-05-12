@@ -14,11 +14,11 @@ class createCartao {
         const body = {
             numero, 
             card_hash: card_id,
-            cliente_id: clienteID
+            cliente_id: clienteID.id
         };
           
          const cartaoFound = await this.cartao.findOne({
-          where: { cliente_id: clienteID },
+          where: { cliente_id: clienteID.id },
         });
 
         if(cartaoFound) {

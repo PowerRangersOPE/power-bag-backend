@@ -10,9 +10,7 @@ class Cartao extends Model {
           primaryKey: true,
         },
         numero: DataTypes.STRING,
-        nome: DataTypes.STRING,
-        cpf: DataTypes.STRING,
-        validade: DataTypes.STRING,
+        card_hash: DataTypes.STRING,
       },
       {
         sequelize,

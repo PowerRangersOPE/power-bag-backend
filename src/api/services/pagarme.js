@@ -21,7 +21,7 @@ class pagarme {
             return id;
     
         } catch (error) {
-            throw error;
+            throw {message: `pagarme error: ${error.message}`};
         }
     }   
 

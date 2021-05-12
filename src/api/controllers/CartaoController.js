@@ -1,5 +1,8 @@
-const Cartao = require('../models/Cartao');
+const getCartaoUseCase = require('../useCases/cliente');
 
+const {
+  createCartao
+} = getCartaoUseCase();
 class CartaoController {
 //   async index(req, res) {
 //     try {
@@ -21,7 +24,7 @@ class CartaoController {
 
   async store(req, res) {
     try {
-      const cartao = await Cartao.create(req.body);
+      const cartao = await createCartao.execute(req.cliente, req.body);
       return res.json(cartao);
     } catch (err) {
       return res.status(400).json({ error: err.message });

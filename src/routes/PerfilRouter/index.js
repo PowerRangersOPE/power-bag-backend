@@ -11,9 +11,4 @@ router.get('/perfil', verifyToken, perfilController.show);
 router.post('/perfil', verifyToken, perfilController.store);
 router.put('/perfil', verifyToken, perfilController.update);
 
-/**
- * transformar o cliente_id em unique
- */
-
-
 module.exports = router;

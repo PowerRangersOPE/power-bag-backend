@@ -2,11 +2,7 @@ class findAllClienteUseCase {
   constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
-
-  /**
-   * Include associations with others tables
-   * use the tables name
-   */
+  
   async execute() {
     const clientes = await this.cliente.findAll({
       include: [

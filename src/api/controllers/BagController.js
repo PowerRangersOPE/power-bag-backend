@@ -2,9 +2,6 @@
 
 const getBagUseCase = require('../useCases/bag');
 
-/**
- * importar função de useCase
- */
 const { createBag, findBag, updateBag } = getBagUseCase();
 
 class bagController {

@@ -14,12 +14,6 @@ class sendEmail {
     });
   }
 
-  /**
-   * Nome, email, celular, endereço {rua, numero, bairro, cidade}
-   * Perfil: genero, fx_etaria, necessidade, cor, tipo_estampa, tipo_tenis
-   * tamanho_sapato, tamanho_calca, tamanho_camisa
-   */
-
   execute({ cliente, id }) {
     const {
       nome,

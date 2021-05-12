@@ -14,8 +14,4 @@ router.post('/bag', verifyToken, bagController.store);
 
 router.put('/bag', verifyToken, verifyUpdateBag, bagController.update);
 
-/**
- * Criar rota de update (rota tem que ser logada)
- */
-
 module.exports = router;

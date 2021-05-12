@@ -1,7 +1,3 @@
-/**
- * Criar classe com lógica para update da bag
- */
- 
 class updateBag {
     constructor({ modelBag }) {
       this.Bag = modelBag;

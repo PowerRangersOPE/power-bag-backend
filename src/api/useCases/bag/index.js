@@ -10,9 +10,6 @@ const CreateBag = require('./createBagUseCase');
 const FindBag = require('./findBag');
 const UpdateBag = require('./updateBag');
 
-/** 
- * Importar e inserir a useCase de update
- */
 module.exports = (modelBag = Bag) => ({
   createBag: new CreateBag({
     modelBag,

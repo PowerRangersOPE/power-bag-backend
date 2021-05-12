@@ -1,8 +1,10 @@
 const Cartao = require('../../models/Cartao');
 
+const { pagarme } = require('../../services')();
+
 const CreateCartao = require('./createCartao');
 
 
-module.exports = (modelPerfil = Cartao) => ({
-  createCartao: new CreateCartao({ modelPerfil }),
+module.exports = (modelCartao = Cartao) => ({
+  createCartao: new CreateCartao({ modelCartao, pagarme }),
 });

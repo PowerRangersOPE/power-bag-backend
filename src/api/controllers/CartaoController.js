@@ -1,8 +1,9 @@
-const getCartaoUseCase = require('../useCases/cliente');
+const getCartaoUseCase = require('../useCases/cartao');
 
 const {
-  createCartao
+    createCartao
 } = getCartaoUseCase();
+
 class CartaoController {
 //   async index(req, res) {
 //     try {

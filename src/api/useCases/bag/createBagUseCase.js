@@ -17,6 +17,7 @@ class createBagUseCase {
     this.createPDFUseCase = createPDFUseCase;
     this.sendEmail = sendEmail;
     this.pagarme = pagarme;
+    this.newBag = null;
   }
 
   async createItensBag(produto, bag) {
@@ -75,25 +76,26 @@ class createBagUseCase {
             cliente_id: id
         };
 
-      const bag = await this.bag.create(bagBody);
+      this.newBag = await this.bag.create(bagBody);
 
-      console.log('BAG', bag);
+      console.log('BAG', this.newBag.toJSON());
 
-    const transaction_id = await this.pagarme.createTransactions(cliente.toJSON(), bag.toJSON());
+    const transaction_id = await this.pagarme.createTransactions(cliente.toJSON(), this.newBag.toJSON());
 
-    // const updatedBag = await this.bag.update({ transaction_id }, { 
+    // this.newBag = await this.bag.update({ transaction_id }, { 
     //     where: { id: bag.id },
     //     returning: true,
     //  })
-    
-      await produtos.map(async produto => await this.createItensBag(produto, bag));
+
+      await produtos.map(async produto => await this.createItensBag(produto, this.newBag));
 
       this.sendEmail.execute({ cliente, id });
 
       console.log('Enviar email');
 
-      return updatedBag;
+      return this.newBag;
     } catch (error) {
+        if(this.newBag) await this.cliente.destroy({ where: { id: this.newBag.id } });
       throw error;
     }
   }

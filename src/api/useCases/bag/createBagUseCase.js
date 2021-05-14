@@ -21,7 +21,7 @@ class createBagUseCase {
   }
 
   async createItensBag(produto, bag) {
-      await this.itensBag.create({
+      const itemBag = await this.itensBag.create({
         produto_id: produto.id,
         bag_id: bag.id
     })
@@ -73,7 +73,8 @@ class createBagUseCase {
             observacoes: '',
             valor: totalValueProdutos,
             produtos_pdf: '',
-            cliente_id: id
+            cliente_id: id,
+            transaction_id: '',
         };
 
       this.newBag = await this.bag.create(bagBody);
@@ -82,12 +83,15 @@ class createBagUseCase {
 
     const transaction_id = await this.pagarme.createTransactions(cliente.toJSON(), this.newBag.toJSON());
 
-    // this.newBag = await this.bag.update({ transaction_id }, { 
-    //     where: { id: bag.id },
-    //     returning: true,
-    //  })
+    const [, [updatedBag]] = await this.bag.update({ transaction_id }, { 
+        where: { id: this.newBag.id },
+        returning: true,
+     })
+
+     this.newBag = updatedBag;
 
       await produtos.map(async produto => await this.createItensBag(produto, this.newBag));
+
 
       this.sendEmail.execute({ cliente, id });
 
@@ -95,7 +99,6 @@ class createBagUseCase {
 
       return this.newBag;
     } catch (error) {
-        if(this.newBag) await this.cliente.destroy({ where: { id: this.newBag.id } });
       throw error;
     }
   }

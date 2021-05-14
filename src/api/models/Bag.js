@@ -14,6 +14,7 @@ class Bag extends Model {
         valor: DataTypes.STRING,
         cliente_id: DataTypes.INTEGER,
         produtos_pdf: DataTypes.STRING,
+        transaction_id: DataTypes.STRING,
       },
       {
         sequelize,

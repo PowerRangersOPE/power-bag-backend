@@ -1,3 +1,5 @@
+const createTransactionBody = require('./createTransactionBody');
+
 class pagarme {
 
     constructor(axios, api_key) {
@@ -24,6 +26,26 @@ class pagarme {
             throw {message: `pagarme error: ${error.message}`};
         }
     }   
+
+    async createTransactions(cliente, bag) {
+        try {
+
+            const body = createTransactionBody(cliente, bag, this.api_key)
+        
+
+            const { data: {id} } = await this.request.post(`${this.baseURL}${this.transactionURI}`, body, {
+                headers: {
+                    'content-type': 'application/json',
+                }
+            });
+
+
+            return id
+  
+        } catch (error) {
+            throw error
+        }
+    }
 
 
 }

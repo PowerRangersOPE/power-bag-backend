@@ -1,6 +1,8 @@
 const Bag = require('../../models/Bag');
 const ItensBag = require('../../models/ItensBag');
 
+const { pagarme } = require('../../services/')();
+
 const { findCliente } = require('../cliente')();
 const { findProdutoWhere } = require('../produto')();
 const { createPDFUseCase } = require('../pdf')();
@@ -18,6 +20,7 @@ module.exports = (modelBag = Bag) => ({
     findProdutoWhere,
     createPDFUseCase,
     sendEmail,
+    pagarme,
   }),
   findBag : new FindBag({ modelBag }),
   updateBag: new UpdateBag({ modelBag }),

@@ -7,7 +7,8 @@ class createBagUseCase {
     findCliente,
     findProdutoWhere,
     createPDFUseCase,
-    sendEmail
+    sendEmail,
+    pagarme
   }) {
     this.bag = modelBag;
     this.itensBag = modelItensBag;
@@ -15,6 +16,7 @@ class createBagUseCase {
     this.findProdutos = findProdutoWhere;
     this.createPDFUseCase = createPDFUseCase;
     this.sendEmail = sendEmail;
+    this.pagarme = pagarme;
   }
 
   async createItensBag(produto, bag) {
@@ -77,13 +79,20 @@ class createBagUseCase {
 
       console.log('BAG', bag);
 
+    const transaction_id = await this.pagarme.createTransactions(cliente.toJSON(), bag.toJSON());
+
+    // const updatedBag = await this.bag.update({ transaction_id }, { 
+    //     where: { id: bag.id },
+    //     returning: true,
+    //  })
+    
       await produtos.map(async produto => await this.createItensBag(produto, bag));
 
       this.sendEmail.execute({ cliente, id });
 
       console.log('Enviar email');
 
-      return bag;
+      return updatedBag;
     } catch (error) {
       throw error;
     }

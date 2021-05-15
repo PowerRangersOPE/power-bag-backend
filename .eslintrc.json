@@ -4,7 +4,7 @@
         "es6": true
     },
     "extends": [
-        "prettier",
+        "plugin:prettier/recommended",
         "airbnb-base",
         "eslint:recommended"
     ],
@@ -28,6 +28,8 @@
         "no-useless-catch": "off",
         "array-callback-return": "off",
         "object-curly-newline": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "implicit-arrow-linebreak": "off",
+        "function-paren-newline": "off"
     }
 }

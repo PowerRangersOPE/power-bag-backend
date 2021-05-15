@@ -12,7 +12,7 @@
         "db:migrate": "npx sequelize-cli db:migrate",
         "db:create": "npx sequelize-cli db:create power-bag",
         "start": "npm run db:migrate && node src/server.js",
-        "eslint:fix": "npx eslint --fix **/**/**/*.js --quiet",
+        "eslint:fix": "npx eslint src/**/*.js --fix  --quiet",
         "postinstall": "husky install",
         "prepare": "husky install"
     },

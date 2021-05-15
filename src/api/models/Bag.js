@@ -34,11 +34,11 @@ class Bag extends Model {
     });
 
     this.hasOne(models.ItensBag, {
-        foreignKey: 'bag_id',
-        as: 'itensBag',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      });
+      foreignKey: 'bag_id',
+      as: 'itensBag',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

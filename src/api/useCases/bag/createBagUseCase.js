@@ -1,5 +1,3 @@
-const fs = require('fs');
-const { resolve } = require('path');
 class createBagUseCase {
   constructor({
     modelBag,
@@ -8,7 +6,7 @@ class createBagUseCase {
     findProdutoWhere,
     createPDFUseCase,
     sendEmail,
-    pagarme
+    pagarme,
   }) {
     this.bag = modelBag;
     this.itensBag = modelItensBag;
@@ -21,10 +19,10 @@ class createBagUseCase {
   }
 
   async createItensBag(produto, bag) {
-      const itemBag = await this.itensBag.create({
-        produto_id: produto.id,
-        bag_id: bag.id
-    })
+    await this.itensBag.create({
+      produto_id: produto.id,
+      bag_id: bag.id,
+    });
   }
 
   async execute({ id }) {
@@ -58,40 +56,46 @@ class createBagUseCase {
       console.log('requiredConditionals', requiredConditionals);
       console.log('optionalConditionals', optionalConditionals);
 
-
       const { produtos, totalValueProdutos } = await this.findProdutos.execute(
         requiredConditionals,
         optionalConditionals
       );
 
-        // await this.createPDFUseCase.execute(produtos, id);
+      // await this.createPDFUseCase.execute(produtos, id);
 
-        console.log('create PDF');
+      console.log('create PDF');
 
-        const bagBody = {
-            status: 'criado',
-            observacoes: '',
-            valor: totalValueProdutos,
-            produtos_pdf: '',
-            cliente_id: id,
-            transaction_id: '',
-        };
+      const bagBody = {
+        status: 'criado',
+        observacoes: '',
+        valor: totalValueProdutos,
+        produtos_pdf: '',
+        cliente_id: id,
+        transaction_id: '',
+      };
 
       this.newBag = await this.bag.create(bagBody);
 
       console.log('BAG', this.newBag.toJSON());
 
-    const transaction_id = await this.pagarme.createTransactions(cliente.toJSON(), this.newBag.toJSON());
+      const transaction_id = await this.pagarme.createTransactions(
+        cliente.toJSON(),
+        this.newBag.toJSON()
+      );
 
-    const [, [updatedBag]] = await this.bag.update({ transaction_id }, { 
-        where: { id: this.newBag.id },
-        returning: true,
-     })
+      const [, [updatedBag]] = await this.bag.update(
+        { transaction_id },
+        {
+          where: { id: this.newBag.id },
+          returning: true,
+        }
+      );
 
-     this.newBag = updatedBag;
+      this.newBag = updatedBag;
 
-      await produtos.map(async produto => await this.createItensBag(produto, this.newBag));
-
+      await produtos.map(async (produto) =>
+        this.createItensBag(produto, this.newBag)
+      );
 
       this.sendEmail.execute({ cliente, id });
 

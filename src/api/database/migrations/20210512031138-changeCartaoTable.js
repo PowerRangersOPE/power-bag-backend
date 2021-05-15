@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface) => {
     await queryInterface.removeColumn('cartao', 'cpf');
     await queryInterface.removeColumn('cartao', 'validade');
     await queryInterface.renameColumn('cartao', 'nome', 'card_hash');

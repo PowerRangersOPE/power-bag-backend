@@ -16,7 +16,7 @@ class ItensBag extends Model {
         sequelize,
         freezeTableName: true,
         modelName: 'ItensBag',
-        tableName: 'itensBag'
+        tableName: 'itensBag',
       }
     );
   }
@@ -30,14 +30,12 @@ class ItensBag extends Model {
     });
 
     this.belongsTo(models.Produto, {
-        foreignKey: 'produto_id',
-        as: 'produto',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      });
+      foreignKey: 'produto_id',
+      as: 'produto',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
-
-
 }
 
 module.exports = ItensBag;

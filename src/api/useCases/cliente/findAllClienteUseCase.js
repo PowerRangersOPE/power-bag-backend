@@ -2,7 +2,7 @@ class findAllClienteUseCase {
   constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
-  
+
   async execute() {
     const clientes = await this.cliente.findAll({
       include: [

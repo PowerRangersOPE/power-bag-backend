@@ -31,6 +31,16 @@ class bagController {
     }
   }
 
+  async showAll(req, res) {
+    try {
+      const { cliente } = req;
+      const bag = await createBag.execute(cliente);
+      return res.json(bag);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
   async update(req, res) {
     try {
       const bagId = await updateBag.execute(req.body);

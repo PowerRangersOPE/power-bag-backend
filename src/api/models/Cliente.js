@@ -20,6 +20,7 @@ class Cliente extends Model {
         dat_nasc: DataTypes.STRING,
         status: DataTypes.STRING,
         pontuacao: DataTypes.STRING,
+        adm: DataTypes.BOOLEAN,
       },
       {
         sequelize,

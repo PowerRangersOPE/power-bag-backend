@@ -3,14 +3,14 @@ const getBagUseCase = require('../useCases/bag');
 const { createBag, findBag, updateBag } = getBagUseCase();
 
 class bagController {
-  //   async index(req, res) {
-  //     try {
-  //       const bag = await Bag.findAll();
-  //       return res.json(bag);
-  //     } catch (err) {
-  //       return res.status(400).json({ error: err.message });
-  //     }
-  //   }
+  async index(req, res) {
+    try {
+      const bag = await Bag.findAll();
+      return res.json(bag);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
 
   async show(req, res) {
     try {

@@ -6,6 +6,7 @@ const createSchema = async (req, res, next) => {
       email: joi.string().email().required(),
       senha: joi.string().alphanum().min(3).required(),
       nome: joi.string().required(),
+      adm: joi.boolean().optional(),
     });
 
     await schema.validateAsync(req.body);

@@ -20,6 +20,7 @@ class Cliente extends Model {
         dat_nasc: DataTypes.STRING,
         status: DataTypes.STRING,
         pontuacao: DataTypes.STRING,
+        adm: DataTypes.BOOLEAN,
       },
       {
         sequelize,
@@ -32,6 +33,10 @@ class Cliente extends Model {
       if (cliente.senha) {
         cliente.senha = await hash(cliente.senha, 8);
       }
+    });
+
+    this.addHook('beforeSave', async (cliente) => {
+      if (!cliente.adm) cliente.adm = false;
     });
 
     return this;

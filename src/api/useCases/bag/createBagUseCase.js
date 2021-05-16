@@ -5,7 +5,8 @@ class createBagUseCase {
     findCliente,
     findProdutoWhere,
     createPDFUseCase,
-    sendEmail,
+    sendADMEmail,
+    sendClienteEmail,
     pagarme,
   }) {
     this.bag = modelBag;
@@ -13,7 +14,8 @@ class createBagUseCase {
     this.findCliente = findCliente;
     this.findProdutos = findProdutoWhere;
     this.createPDFUseCase = createPDFUseCase;
-    this.sendEmail = sendEmail;
+    this.sendADMEmail = sendADMEmail;
+    this.sendClienteEmail = sendClienteEmail;
     this.pagarme = pagarme;
     this.newBag = null;
   }
@@ -97,7 +99,8 @@ class createBagUseCase {
         this.createItensBag(produto, this.newBag)
       );
 
-      this.sendEmail.execute({ cliente, id });
+      this.sendADMEmail.execute({ cliente });
+      this.sendClienteEmail.execute({ cliente });
 
       console.log('Enviar email');
 

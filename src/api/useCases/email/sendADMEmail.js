@@ -3,13 +3,13 @@ const handlebars = require('handlebars');
 const { resolve } = require('path');
 const { readFileSync } = require('fs');
 
-class sendEmail {
+class sendADMEmail {
   constructor() {
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.ADM_EMAIL,
-        pass: process.env.ADM_EMAIL_PASSWORD,
+        user: process.env.POWER_BAG_EMAIL,
+        pass: process.env.POWER_BAG_EMAIL_PASSWORD,
       },
     });
   }
@@ -61,7 +61,7 @@ class sendEmail {
       '..',
       'api',
       'views',
-      'templateEmail.hbs'
+      'templateADMEmail.hbs'
     );
 
     const templateFileContent = readFileSync(viewPath).toString('utf8');
@@ -71,8 +71,8 @@ class sendEmail {
     const html = mailTemplateParse(variables);
 
     const mailOptions = {
-      from: 'power.bag.squad@gmail.com',
-      to: email,
+      from: process.env.POWER_BAG_EMAIL,
+      to: process.env.ADM_EMAIL,
       subject: 'Nova solicitação de BAG',
       html,
       //   attachments: [
@@ -96,4 +96,4 @@ class sendEmail {
   }
 }
 
-module.exports = sendEmail;
+module.exports = sendADMEmail;

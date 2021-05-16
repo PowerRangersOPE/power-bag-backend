@@ -15,10 +15,13 @@ class findProdutoWhereUseCase {
         },
         attributes: { exclude: ['createdAt', 'updatedAt'] },
       });
-      
+
       if (!produtos) throw new Error('Produtos not found');
-      
-      const totalValue = produtos.reduce((acc, cur) => acc + parseFloat(cur.valor), 0 )
+
+      const totalValue = produtos.reduce(
+        (acc, cur) => acc + parseFloat(cur.valor),
+        0
+      );
 
       return { produtos, totalValueProdutos: totalValue };
     } catch (error) {

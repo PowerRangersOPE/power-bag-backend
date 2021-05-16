@@ -1,13 +1,11 @@
-
-
 const getBagUseCase = require('../useCases/bag');
 
-const { createBag, findBag, updateBag } = getBagUseCase();
+const { createBag, findBag, updateBag, findAllBags } = getBagUseCase();
 
 class bagController {
   async index(req, res) {
     try {
-      const bag = await Bag.findAll();
+      const bag = await findAllBags.execute();
       return res.json(bag);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -34,15 +32,13 @@ class bagController {
   }
 
   async update(req, res) {
-    
-    try{
-      const bagId = await  updateBag.execute(req.body);
-      return res.json(bagId);        
+    try {
+      const bagId = await updateBag.execute(req.body);
+      return res.json(bagId);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
   }
-
 }
 
 module.exports = bagController;

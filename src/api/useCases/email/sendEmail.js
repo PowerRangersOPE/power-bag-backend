@@ -14,7 +14,7 @@ class sendEmail {
     });
   }
 
-  execute({ cliente, id }) {
+  execute({ cliente }) {
     const {
       nome,
       email,
@@ -75,18 +75,18 @@ class sendEmail {
       to: email,
       subject: 'Nova solicitação de BAG',
       html,
-    //   attachments: [
-    //     {
-    //       path: resolve(
-    //         __dirname,
-    //         '..',
-    //         '..',
-    //         '..',
-    //         'temp',
-    //         `ProdutosParaBag-${id}.pdf`
-    //       ),
-    //     },
-    //   ],
+      //   attachments: [
+      //     {
+      //       path: resolve(
+      //         __dirname,
+      //         '..',
+      //         '..',
+      //         '..',
+      //         'temp',
+      //         `ProdutosParaBag-${id}.pdf`
+      //       ),
+      //     },
+      //   ],
     };
 
     this.transporter.sendMail(mailOptions, (error, info) => {

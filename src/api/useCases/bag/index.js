@@ -6,7 +6,7 @@ const { pagarme } = require('../../services')();
 const { findCliente } = require('../cliente')();
 const { findProdutoWhere } = require('../produto')();
 const { createPDFUseCase } = require('../pdf')();
-const { sendEmail } = require('../email')();
+const { sendADMEmail, sendClienteEmail } = require('../email')();
 
 const CreateBag = require('./createBagUseCase');
 const FindBag = require('./findBag');
@@ -20,7 +20,8 @@ module.exports = (modelBag = Bag) => ({
     findCliente,
     findProdutoWhere,
     createPDFUseCase,
-    sendEmail,
+    sendADMEmail,
+    sendClienteEmail,
     pagarme,
   }),
   findBag: new FindBag({ modelBag }),

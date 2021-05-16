@@ -12,6 +12,7 @@ class validateLogin {
         id: clienteId,
         email: clienteEmail,
         senha: clienteSenha,
+        adm,
       } = await this.findClienteByEmail.execute({ email });
 
       const match = await comparePassword(senha, clienteSenha);
@@ -20,7 +21,7 @@ class validateLogin {
 
       const token = jwt.sign(
         {
-          cliente: { id: clienteId, email: clienteEmail },
+          cliente: { id: clienteId, email: clienteEmail, adm },
         },
         process.env.SECRET,
         {

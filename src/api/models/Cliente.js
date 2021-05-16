@@ -35,6 +35,10 @@ class Cliente extends Model {
       }
     });
 
+    this.addHook('beforeSave', async (cliente) => {
+      if (!cliente.adm) cliente.adm = false;
+    });
+
     return this;
   }
 

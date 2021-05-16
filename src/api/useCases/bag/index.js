@@ -11,6 +11,7 @@ const { sendEmail } = require('../email')();
 const CreateBag = require('./createBagUseCase');
 const FindBag = require('./findBag');
 const UpdateBag = require('./updateBag');
+const FindAllBags = require('./findAllBags');
 
 module.exports = (modelBag = Bag) => ({
   createBag: new CreateBag({
@@ -24,4 +25,5 @@ module.exports = (modelBag = Bag) => ({
   }),
   findBag: new FindBag({ modelBag }),
   updateBag: new UpdateBag({ modelBag }),
+  findAllBags: new FindAllBags({ modelBag }),
 });

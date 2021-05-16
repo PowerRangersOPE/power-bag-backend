@@ -9,8 +9,7 @@ const bagController = new BagController();
 
 const router = new Router();
 
-router.get('/bag', verifyToken, bagController.index);
-router.get('/bag/all', verifyToken, verifyAdmin, bagController.showAll);
+router.get('/bag/all', verifyToken, verifyAdmin, bagController.index);
 router.get('/bag/detail', verifyToken, bagController.show);
 router.post('/bag', verifyToken, bagController.store);
 router.put('/bag', verifyToken, verifyUpdateBag, bagController.update);

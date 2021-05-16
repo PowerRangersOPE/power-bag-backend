@@ -1,11 +1,11 @@
 const getBagUseCase = require('../useCases/bag');
 
-const { createBag, findBag, updateBag } = getBagUseCase();
+const { createBag, findBag, updateBag, findAllBags } = getBagUseCase();
 
 class bagController {
   async index(req, res) {
     try {
-      const bag = await Bag.findAll();
+      const bag = await findAllBags.execute();
       return res.json(bag);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -22,16 +22,6 @@ class bagController {
   }
 
   async store(req, res) {
-    try {
-      const { cliente } = req;
-      const bag = await createBag.execute(cliente);
-      return res.json(bag);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
-
-  async showAll(req, res) {
     try {
       const { cliente } = req;
       const bag = await createBag.execute(cliente);

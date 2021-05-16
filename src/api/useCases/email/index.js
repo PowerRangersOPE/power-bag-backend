@@ -1,5 +1,7 @@
-const SendEmail = require('./sendEmail');
+const SendADMEmail = require('./sendADMEmail');
+const SendClienteEmail = require('./sendClienteEmail');
 
 module.exports = () => ({
-  sendEmail: new SendEmail(),
+  sendADMEmail: new SendADMEmail(),
+  sendClienteEmail: new SendClienteEmail(),
 });

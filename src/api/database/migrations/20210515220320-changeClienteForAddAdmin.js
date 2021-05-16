@@ -2,7 +2,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn('cliente', 'adm', {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
         default: false,
     });
   },

@@ -33,7 +33,7 @@ class createBagUseCase {
 
       if (!cliente) throw new Error('Cliente not found');
 
-      console.log('cliente', cliente);
+      console.log('cliente', cliente.toJSON());
 
       const {
         perfil: {
@@ -43,6 +43,10 @@ class createBagUseCase {
           tamanho_sapato,
           tamanho_calca,
           tamanho_camisa,
+          cor,
+          tipo_estampa,
+          tipo_tenis,
+          tipo_estilo,
         },
       } = cliente;
 
@@ -50,6 +54,10 @@ class createBagUseCase {
 
       const optionalConditionals = [
         { estacao_ano },
+        { cor },
+        { tipo_tenis },
+        { tipo_estampa },
+        { tipo_estilo },
         { tamanho_sapato },
         { tamanho_calca },
         { tamanho_camisa },
@@ -63,12 +71,14 @@ class createBagUseCase {
         optionalConditionals
       );
 
-      // await this.createPDFUseCase.execute(produtos, id);
+      //   await this.createPDFUseCase.execute(produtos, id);
 
-      console.log('create PDF');
+      //   console.log('create PDF');
+
+      if (totalValueProdutos <= 0) throw new Error('Bag with no value');
 
       const bagBody = {
-        status: 'criado',
+        status: 'Solicitada',
         observacoes: '',
         valor: totalValueProdutos,
         produtos_pdf: '',

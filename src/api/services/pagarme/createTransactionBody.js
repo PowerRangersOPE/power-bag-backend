@@ -54,7 +54,7 @@ module.exports = (cliente, bag, api_key) => {
 
   const body = {
     api_key,
-    amount: parseInt(valor.replace(/[^0-9]/g, ''), 10),
+    amount: valor * 100,
     card_id: card_hash,
     customer,
     billing,

@@ -11,6 +11,12 @@ module.exports = (cliente, bag, api_key) => {
   } = cliente;
   const { valor } = bag;
 
+  const getBirthday = (date) => {
+    const [day, mouth, year] = date.split('/');
+
+    return `${year}-${mouth}-${day}`;
+  };
+
   const address = {
     country: 'br',
     state: endereco.uf,
@@ -34,7 +40,7 @@ module.exports = (cliente, bag, api_key) => {
       },
     ],
     phone_numbers: [`+55${tel_cel1.replace(/[^0-9]/g, '')}`],
-    birthday: new Date(dat_nasc).toLocaleDateString('en-CA'),
+    birthday: getBirthday(dat_nasc),
   };
 
   const billing = {

@@ -23,7 +23,7 @@ class findProdutoWhereUseCase {
         0
       );
 
-      return { produtos, totalValueProdutos: totalValue };
+      return { produtos, totalValueProdutos: Number(totalValue.toFixed(2)) };
     } catch (error) {
       return error;
     }

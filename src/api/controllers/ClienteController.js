@@ -1,8 +1,11 @@
 const getClienteUseCase = require('../useCases/cliente');
 
+
 const {
   findCliente,
   findAllClientes,
+  findClienteByCPF,
+  verifyClienteByCPF,
   createCliente,
   updateCliente,
   deleteCliente,
@@ -59,6 +62,24 @@ class ClienteController {
   async destroy(req, res) {
     try {
       const cliente = await deleteCliente.execute(req.params.id);
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+async findCPF(req, res) {
+    try {
+      const cliente = await findClienteByCPF.execute(req.params.cpf);
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+async verifyCPF(req, res) {
+    try {
+      const cliente = await verifyClienteByCPF.execute(req.params.cpf);
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });

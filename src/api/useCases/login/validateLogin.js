@@ -2,17 +2,17 @@ const { compare: comparePassword } = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 class validateLogin {
-  constructor({ FindClienteByEmail }) {
-    this.findClienteByEmail = FindClienteByEmail;
+  constructor({ findClienteByCPF }) {
+    this.findClienteByCPF = findClienteByCPF;
   }
 
-  async execute({ email, senha }) {
+  async execute({ cpf, senha }) {
     try {
       const {
         id: clienteId,
-        email: clienteEmail,
+        cpf: clienteCPF,
         senha: clienteSenha,
-      } = await this.findClienteByEmail.execute({ email });
+      } = await this.findClienteByCPF.execute({ cpf });
 
       const match = await comparePassword(senha, clienteSenha);
 
@@ -20,7 +20,7 @@ class validateLogin {
 
       const token = jwt.sign(
         {
-          cliente: { id: clienteId, email: clienteEmail },
+          cliente: { id: clienteId, cpf: clienteCPF },
         },
         process.env.SECRET,
         {

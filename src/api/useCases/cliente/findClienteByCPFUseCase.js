@@ -1,11 +1,11 @@
-class findClienteByEmailUseCase {
+class findClienteByCPFUseCase {
   constructor({ modelCliente }) {
     this.cliente = modelCliente;
   }
 
-  async execute({ email }) {
+  async execute({ cpf }) {
     try {
-      const foundClient = await this.cliente.findOne({ where: { email } });
+      const foundClient = await this.cliente.findOne({ where: { cpf } });
 
       if (!foundClient) throw new Error('Cliente not found');
 
@@ -16,4 +16,4 @@ class findClienteByEmailUseCase {
   }
 }
 
-module.exports = findClienteByEmailUseCase;
+module.exports = findClienteByCPFUseCase;

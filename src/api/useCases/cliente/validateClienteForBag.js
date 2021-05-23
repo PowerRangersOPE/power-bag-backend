@@ -1,18 +1,51 @@
+const { Op } = require('sequelize');
+
 class validateClienteForBag {
-  constructor({ modelCliente }) {
+  constructor({ modelCliente, modelBag }) {
     this.cliente = modelCliente;
+    this.bag = modelBag;
   }
 
-  verifyClienteData({ cartao, endereco, perfil }) {
-    const cartao_flag = process.env.CARTAO_FLAG === 'true';
+  async verifyClienteData({
+    id,
+    cpf,
+    tel_cel1,
+    dat_nasc,
+    cartao,
+    endereco,
+    perfil,
+  }) {
+    const clienteData = [cpf, tel_cel1, dat_nasc, cartao, endereco, perfil];
+    const removeNullClienteData = clienteData.filter(Boolean);
 
-    if (cartao_flag) {
-      if (!cartao || !endereco || !perfil) return false;
+    if (clienteData.length !== removeNullClienteData.length) {
+      return {
+        available: false,
+        reason: 'dados cadastrais',
+      };
     }
 
-    if (!endereco || !perfil) return false;
+    const findBag = await this.bag.findOne({
+      where: {
+        cliente_id: id,
+        [Op.and]: [
+          { status: { [Op.ne]: 'Finalizado' } },
+          { status: { [Op.ne]: 'Cancelado' } },
+          { status: { [Op.ne]: 'Compra total' } },
+        ],
+      },
+    });
 
-    return true;
+    if (findBag) {
+      return {
+        available: false,
+        reason: 'solicitacao em aberto',
+      };
+    }
+
+    return {
+      available: true,
+    };
   }
 
   async execute(id) {
@@ -22,14 +55,16 @@ class validateClienteForBag {
         { association: 'endereco' },
         { association: 'perfil' },
       ],
-      attributes: { exclude: ['senha', 'id', 'createdAt', 'updatedAt'] },
+      attributes: { exclude: ['senha', 'createdAt', 'updatedAt'] },
     });
 
     if (!foundClient) throw new Error('Cliente not found');
 
-    const validate = this.verifyClienteData(foundClient.toJSON());
+    const { available, reason } = await this.verifyClienteData(
+      foundClient.toJSON()
+    );
 
-    return { clienteID: id, available: validate };
+    return { clienteID: id, available, reason };
   }
 }
 

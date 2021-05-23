@@ -1,4 +1,5 @@
 const Cliente = require('../../models/Cliente');
+const Bag = require('../../models/Bag');
 
 const FindCliente = require('./findClienteUseCase');
 const FindClienteByEmail = require('./findClienteByEmailUseCase');
@@ -15,5 +16,8 @@ module.exports = (modelCliente = Cliente) => ({
   createCliente: new CreateCliente({ modelCliente }),
   updateCliente: new UpdateCliente({ modelCliente }),
   deleteCliente: new DeleteCliente({ modelCliente }),
-  validateClienteForBag: new ValidateClienteForBag({ modelCliente }),
+  validateClienteForBag: new ValidateClienteForBag({
+    modelCliente,
+    modelBag: Bag,
+  }),
 });

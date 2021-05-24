@@ -36,7 +36,7 @@ module.exports = {
       await queryInterface.changeColumn('cliente', 'cpf', {
         type: Sequelize.STRING,
         allowNull: true,
-        unique: false
+        unique: true
       });
   }
 };

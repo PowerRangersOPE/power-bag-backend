@@ -3,18 +3,22 @@ class updateBag {
     this.Bag = modelBag;
   }
 
-  async execute(newStatus) {
+  async execute({ status, valor, id_bag }) {
     try {
+      const newStatus = {
+        status,
+        valor,
+      };
       const updatedBag = await this.Bag.update(newStatus, {
-        where: { id: newStatus.id_bag },
+        where: { id: id_bag },
         returning: true,
       });
 
       if (!updatedBag) throw new Error('bag or client not found');
 
-      const [, [status]] = updatedBag;
+      const [, [bag]] = updatedBag;
 
-      return status;
+      return bag;
     } catch (error) {
       throw error;
     }

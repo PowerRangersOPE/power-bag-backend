@@ -12,6 +12,7 @@ class Bag extends Model {
         status: DataTypes.STRING,
         observacoes: DataTypes.STRING,
         valor: DataTypes.INTEGER,
+        valor_original: DataTypes.INTEGER,
         cliente_id: DataTypes.STRING,
         produtos_pdf: DataTypes.STRING,
         transaction_id: DataTypes.STRING,

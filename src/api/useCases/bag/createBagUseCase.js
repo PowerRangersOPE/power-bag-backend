@@ -81,6 +81,7 @@ class createBagUseCase {
         status: 'Solicitada',
         observacoes: '',
         valor: totalValueProdutos,
+        valor_original: totalValueProdutos,
         produtos_pdf: '',
         cliente_id: id,
         transaction_id: '',

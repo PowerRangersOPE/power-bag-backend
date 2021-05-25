@@ -11,9 +11,10 @@ class Bag extends Model {
         },
         status: DataTypes.STRING,
         observacoes: DataTypes.STRING,
-        valor: DataTypes.STRING,
-        cliente_id: DataTypes.INTEGER,
+        valor: DataTypes.INTEGER,
+        cliente_id: DataTypes.STRING,
         produtos_pdf: DataTypes.STRING,
+        transaction_id: DataTypes.STRING,
       },
       {
         sequelize,
@@ -33,11 +34,11 @@ class Bag extends Model {
     });
 
     this.hasOne(models.ItensBag, {
-        foreignKey: 'bag_id',
-        as: 'itensBag',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      });
+      foreignKey: 'bag_id',
+      as: 'itensBag',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

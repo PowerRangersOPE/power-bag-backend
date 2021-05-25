@@ -1,5 +1,3 @@
-const fs = require('fs');
-const { resolve } = require('path');
 class createBagUseCase {
   constructor({
     modelBag,
@@ -7,21 +5,26 @@ class createBagUseCase {
     findCliente,
     findProdutoWhere,
     createPDFUseCase,
-    sendEmail
+    sendADMEmail,
+    sendClienteEmail,
+    pagarme,
   }) {
     this.bag = modelBag;
     this.itensBag = modelItensBag;
     this.findCliente = findCliente;
     this.findProdutos = findProdutoWhere;
     this.createPDFUseCase = createPDFUseCase;
-    this.sendEmail = sendEmail;
+    this.sendADMEmail = sendADMEmail;
+    this.sendClienteEmail = sendClienteEmail;
+    this.pagarme = pagarme;
+    this.newBag = null;
   }
 
   async createItensBag(produto, bag) {
-      await this.itensBag.create({
-        produto_id: produto.id,
-        bag_id: bag.id
-    })
+    await this.itensBag.create({
+      produto_id: produto.id,
+      bag_id: bag.id,
+    });
   }
 
   async execute({ id }) {
@@ -30,7 +33,7 @@ class createBagUseCase {
 
       if (!cliente) throw new Error('Cliente not found');
 
-      console.log('cliente', cliente);
+      console.log('cliente', cliente.toJSON());
 
       const {
         perfil: {
@@ -40,6 +43,10 @@ class createBagUseCase {
           tamanho_sapato,
           tamanho_calca,
           tamanho_camisa,
+          cor,
+          tipo_estampa,
+          tipo_tenis,
+          tipo_estilo,
         },
       } = cliente;
 
@@ -47,6 +54,10 @@ class createBagUseCase {
 
       const optionalConditionals = [
         { estacao_ano },
+        { cor },
+        { tipo_tenis },
+        { tipo_estampa },
+        { tipo_estilo },
         { tamanho_sapato },
         { tamanho_calca },
         { tamanho_camisa },
@@ -55,35 +66,55 @@ class createBagUseCase {
       console.log('requiredConditionals', requiredConditionals);
       console.log('optionalConditionals', optionalConditionals);
 
-
       const { produtos, totalValueProdutos } = await this.findProdutos.execute(
         requiredConditionals,
         optionalConditionals
       );
 
-        // await this.createPDFUseCase.execute(produtos, id);
+      //   await this.createPDFUseCase.execute(produtos, id);
 
-        console.log('create PDF');
+      //   console.log('create PDF');
 
-        const bagBody = {
-            status: 'criado',
-            observacoes: '',
-            valor: totalValueProdutos,
-            produtos_pdf: '',
-            cliente_id: id
-        };
+      if (totalValueProdutos <= 0) throw new Error('Bag with no value');
 
-      const bag = await this.bag.create(bagBody);
+      const bagBody = {
+        status: 'Solicitada',
+        observacoes: '',
+        valor: totalValueProdutos,
+        produtos_pdf: '',
+        cliente_id: id,
+        transaction_id: '',
+      };
 
-      console.log('BAG', bag);
+      this.newBag = await this.bag.create(bagBody);
 
-      await produtos.map(async produto => await this.createItensBag(produto, bag));
+      console.log('BAG', this.newBag.toJSON());
 
-      this.sendEmail.execute({ cliente, id });
+      const transaction_id = await this.pagarme.createTransactions(
+        cliente.toJSON(),
+        this.newBag.toJSON()
+      );
+
+      const [, [updatedBag]] = await this.bag.update(
+        { transaction_id },
+        {
+          where: { id: this.newBag.id },
+          returning: true,
+        }
+      );
+
+      this.newBag = updatedBag;
+
+      await produtos.map(async (produto) =>
+        this.createItensBag(produto, this.newBag)
+      );
+
+      this.sendADMEmail.execute({ cliente });
+      this.sendClienteEmail.execute({ cliente });
 
       console.log('Enviar email');
 
-      return bag;
+      return this.newBag;
     } catch (error) {
       throw error;
     }

@@ -11,11 +11,10 @@ const {
   createCliente,
   updateCliente,
   deleteCliente,
-  validateClienteForBag
+  validateClienteForBag,
 } = getClienteUseCase();
 
 class ClienteController {
-
   async index(req, res) {
     try {
       const cliente = await findAllClientes.execute();
@@ -24,7 +23,7 @@ class ClienteController {
       return res.status(400).json({ error: err.message });
     }
   }
-  
+
   async validateForBag(req, res) {
     try {
       const cliente = await validateClienteForBag.execute(req.cliente.id);

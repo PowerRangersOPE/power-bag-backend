@@ -34,11 +34,11 @@ class Produto extends Model {
 
   static associate(models) {
     this.hasMany(models.ItensBag, {
-        foreignKey: 'produto_id',
-        as: 'itensBag',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      });
+      foreignKey: 'produto_id',
+      as: 'itensBag',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
   }
 }
 

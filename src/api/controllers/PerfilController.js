@@ -3,7 +3,6 @@ const getPerfilUseCase = require('../useCases/perfil');
 const { findPerfilCliente, createPerfil, updatePerfil } = getPerfilUseCase();
 
 class PerfilController {
-
   async show(req, res) {
     try {
       const perfil = await findPerfilCliente.execute(req.cliente.id);

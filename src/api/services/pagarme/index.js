@@ -34,6 +34,8 @@ class pagarme {
     try {
       const body = createTransactionBody(cliente, bag, this.api_key);
 
+      console.log(body);
+
       const {
         data: { id },
       } = await this.request.post(
@@ -48,6 +50,7 @@ class pagarme {
 
       return id;
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }

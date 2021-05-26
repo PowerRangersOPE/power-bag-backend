@@ -1,6 +1,5 @@
 const getClienteUseCase = require('../useCases/cliente');
 
-
 const {
   findCliente,
   findAllClientes,
@@ -87,7 +86,7 @@ class ClienteController {
     }
   }
 
-async verifyCPF(req, res) {
+  async verifyCPF(req, res) {
     try {
       const cliente = await verifyClienteByCPF.execute(req.params.cpf);
       return res.json(cliente);

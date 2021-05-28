@@ -3,6 +3,10 @@ const getClienteUseCase = require('../useCases/cliente');
 const {
   findCliente,
   findAllClientes,
+  findClienteByCPF,
+  findClienteByEmail,
+  verifyClienteByCPF,
+  verifyClienteByEmail,
   createCliente,
   updateCliente,
   deleteCliente,
@@ -58,6 +62,42 @@ class ClienteController {
   async destroy(req, res) {
     try {
       const cliente = await deleteCliente.execute(req.params.id);
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async findCPF(req, res) {
+    try {
+      const cliente = await findClienteByCPF.execute(req.params.cpf);
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async findEmail(req, res) {
+    try {
+      const cliente = await findClienteByEmail.execute(req.params.email);
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async verifyCPF(req, res) {
+    try {
+      const cliente = await verifyClienteByCPF.execute(req.params.cpf);
+      return res.json(cliente);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async verifyEmail(req, res) {
+    try {
+      const cliente = await verifyClienteByEmail.execute(req.params.email);
       return res.json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });

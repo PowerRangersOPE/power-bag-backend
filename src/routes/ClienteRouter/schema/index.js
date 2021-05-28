@@ -3,12 +3,13 @@ const joi = require('joi');
 const createSchema = async (req, res, next) => {
   try {
     const schema = joi.object({
-      email: joi.string().email().required(),
+      cpf: joi.string().length(11).required(),
       senha: joi.string().alphanum().min(3).required(),
       nome: joi.string().required(),
       adm: joi.boolean().optional(),
     });
 
+    req.body.cpf = req.body.cpf.replace(/[\W\s]/gi, '');
     await schema.validateAsync(req.body);
 
     return next();

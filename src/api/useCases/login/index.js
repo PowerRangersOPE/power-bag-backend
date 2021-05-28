@@ -1,9 +1,9 @@
 const ValidateLogin = require('./validateLogin');
 
-const { FindClienteByEmail } = require('../cliente')();
+const { findClienteByCPF } = require('../cliente')();
 
 module.exports = () => ({
   validateLogin: new ValidateLogin({
-    FindClienteByEmail,
+    findClienteByCPF,
   }),
 });

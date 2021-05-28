@@ -60,7 +60,7 @@ module.exports = (cliente, bag, api_key) => {
 
   const body = {
     api_key,
-    amount: valor * 100,
+    amount: parseFloat((valor * 100).toFixed(2)),
     card_id: card_hash,
     customer,
     billing,

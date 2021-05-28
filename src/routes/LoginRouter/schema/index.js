@@ -3,10 +3,13 @@ const joi = require('joi');
 const createSessionSchema = async (req, res, next) => {
   try {
     const schema = joi.object({
-      email: joi.string().email().required(),
-      senha: joi.string().alphanum().min(3).required(),
+      cpf: joi.number().integer().required(), 
+      cpf: joi.string().length(11).required(), 
+      //email: joi.string().email(), -joi for e-mail
+      senha: joi.string().alphanum().min(3).required()
     });
 
+    req.body.cpf = req.body.cpf.replace(/[\W\s]/gi,'');
     await schema.validateAsync(req.body);
 
     return next();

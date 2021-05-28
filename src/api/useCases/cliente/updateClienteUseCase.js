@@ -4,14 +4,18 @@ class updateClienteUseCase {
   }
 
   async execute(id, body) {
-    const cliente = await this.cliente.update(body, {
-      where: { id },
-      returning: false,
-    });
+    try {
+      const cliente = await this.cliente.update(body, {
+        where: { id },
+        returning: false,
+      });
 
-    if (!cliente) throw new Error();
+      if (!cliente) throw new Error();
 
-    return cliente;
+      return cliente;
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

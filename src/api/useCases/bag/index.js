@@ -25,6 +25,6 @@ module.exports = (modelBag = Bag) => ({
     pagarme,
   }),
   findBag: new FindBag({ modelBag }),
-  updateBag: new UpdateBag({ modelBag }),
+  updateBag: new UpdateBag({ modelBag, pagarme }),
   findAllBags: new FindAllBags({ modelBag }),
 });

@@ -81,6 +81,7 @@ class createBagUseCase {
         status: 'Solicitada',
         observacoes: '',
         valor: totalValueProdutos,
+        valor_original: totalValueProdutos,
         produtos_pdf: '',
         cliente_id: id,
         transaction_id: '',
@@ -116,6 +117,11 @@ class createBagUseCase {
 
       return this.newBag;
     } catch (error) {
+      if (this.newBag && !this.newBag.transaction_id) {
+        await this.bag.destroy({
+          where: { id: this.newBag.id },
+        });
+      }
       throw error;
     }
   }

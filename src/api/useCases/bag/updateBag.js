@@ -40,9 +40,34 @@ class updateBag {
     }
   }
 
-  async finishedBag() {}
+  async finishedBag({ status, valor, transaction_id, valor_original, id }) {
+    if (valor) {
+      const refundValue = parseFloat(
+        ((valor_original - valor) * 100).toFixed(2)
+      );
+      const parcialRefund = this.pagarme.makePartialRefund({
+        transaction_id,
+        amount: refundValue,
+      });
+
+      if (!parcialRefund) {
+        throw new Error('pagarme: Ocorreu erro durante o estorno parcial');
+      }
+    }
+
+    const body = {
+      status,
+      valor,
+    };
+
+    const updatedBag = await this.updateBag({ id, body });
+
+    return updatedBag;
+  }
 
   updateBagOptions({ status }) {
+    if (!status) return false;
+
     const convertedStatus = status.toLowerCase();
     const options = {
       cancelado: 'cancelado',
@@ -52,7 +77,7 @@ class updateBag {
     return options[convertedStatus] || false;
   }
 
-  async execute({ status, valor, id_bag }) {
+  async execute({ status, valor, id_bag, observacoes }) {
     try {
       const optionUpdateBag = this.updateBagOptions({ status });
 
@@ -60,6 +85,7 @@ class updateBag {
         const body = {
           status,
           valor,
+          observacoes,
         };
 
         const updatedBag = await this.updateBag({ id: id_bag, body });
@@ -86,6 +112,10 @@ class updateBag {
 
       if (optionUpdateBag === 'cancelado') {
         updatedBag = await this.canceledBag(updateBody);
+      }
+
+      if (optionUpdateBag === 'finalizado') {
+        updatedBag = await this.finishedBag(updateBody);
       }
 
       return updatedBag;

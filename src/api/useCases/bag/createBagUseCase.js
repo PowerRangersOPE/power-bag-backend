@@ -117,6 +117,11 @@ class createBagUseCase {
 
       return this.newBag;
     } catch (error) {
+      if (this.newBag && !this.newBag.transaction_id) {
+        await this.bag.destroy({
+          where: { id: this.newBag.id },
+        });
+      }
       throw error;
     }
   }

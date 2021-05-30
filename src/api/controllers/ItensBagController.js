@@ -1,48 +1,13 @@
-const ItensBag = require('../models/ItensBag');
+const getItensBagUseCase = require('../useCases/itensBag');
+
+const { listItensBag } = getItensBagUseCase();
 
 class itensBagController {
   async index(req, res) {
     try {
-      const itensBag = await ItensBag.findAll();
-      return res.json(itensBag);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
-
-  async show(req, res) {
-    try {
-      const itensBag = await ItensBag.findByPk(req.params.id);
-      return res.json(itensBag);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
-
-  async store(req, res) {
-    try {
-      const itensBag = await ItensBag.create(req.body);
-      return res.json(itensBag);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
-
-  async update(req, res) {
-    try {
-      let itensBag = await ItensBag.findByPk(req.params.id);
-      itensBag = await itensBag.update(req.body);
-      return res.json(itensBag);
-    } catch (err) {
-      return res.status(400).json({ error: err.message });
-    }
-  }
-
-  async destroy(req, res) {
-    try {
-      let itensBag = await ItensBag.findByPk(req.params.id);
-      itensBag = await itensBag.destroy(req.body);
-      return res.json(itensBag);
+      const { bagid: bagID } = req.params;
+      const listItens = await listItensBag.execute({ bagID });
+      return res.send(listItens);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

@@ -25,6 +25,7 @@ class sendClienteEmail {
         '..',
         'api',
         'views',
+        'email',
         'templateClienteEmail.hbs'
       );
 

@@ -61,6 +61,7 @@ class sendADMEmail {
       '..',
       'api',
       'views',
+      'email',
       'templateADMEmail.hbs'
     );
 
@@ -75,18 +76,6 @@ class sendADMEmail {
       to: process.env.ADM_EMAIL,
       subject: 'Nova solicitação de BAG',
       html,
-      //   attachments: [
-      //     {
-      //       path: resolve(
-      //         __dirname,
-      //         '..',
-      //         '..',
-      //         '..',
-      //         'temp',
-      //         `ProdutosParaBag-${id}.pdf`
-      //       ),
-      //     },
-      //   ],
     };
 
     this.transporter.sendMail(mailOptions, (error, info) => {

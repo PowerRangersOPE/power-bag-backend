@@ -4,7 +4,6 @@ class createBagUseCase {
     modelItensBag,
     findCliente,
     findProdutoWhere,
-    createPDFUseCase,
     sendADMEmail,
     sendClienteEmail,
     pagarme,
@@ -13,7 +12,6 @@ class createBagUseCase {
     this.itensBag = modelItensBag;
     this.findCliente = findCliente;
     this.findProdutos = findProdutoWhere;
-    this.createPDFUseCase = createPDFUseCase;
     this.sendADMEmail = sendADMEmail;
     this.sendClienteEmail = sendClienteEmail;
     this.pagarme = pagarme;
@@ -70,10 +68,6 @@ class createBagUseCase {
         requiredConditionals,
         optionalConditionals
       );
-
-      //   await this.createPDFUseCase.execute(produtos, id);
-
-      //   console.log('create PDF');
 
       if (totalValueProdutos <= 0) throw new Error('Bag with no value');
 

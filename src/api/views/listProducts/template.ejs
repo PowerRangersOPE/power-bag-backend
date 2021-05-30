@@ -21,9 +21,14 @@
     </style>
 </head>
 
-<body class="bg-purple-100">
+<body class="bg-blue-100">
     <div class="m-8">
-        <h1 class="text-3xl mb-8">Listagem da bag</h1>
+        <h1 class="text-4xl mb-8">Listagem de itens
+        </h1>
+        <h2 class="text-2xl mb-8"> Cliente: <%=nome%>
+        </h2>
+        <h2 class="text-1xl mb-8"> Bag possuí: <%=produtos.length%> produtos
+        </h2>
         <table class="border-separate">
             <thead>
                 <tr>
@@ -93,13 +98,6 @@
                         <% }); %>
                             <% } %>
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">
-                        Bag possuí: <%=produtos.length%> produtos
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </div>
 </body>

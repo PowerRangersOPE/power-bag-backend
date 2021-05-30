@@ -3,7 +3,9 @@ const puppeteer = require('puppeteer');
 class createPDF {
   async execute({ bagID }) {
     try {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
       const page = await browser.newPage();
 
       await page.goto(`${process.env.GENERATE_PDF_TEMPLATE_URL}${bagID}`, {

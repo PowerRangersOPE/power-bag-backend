@@ -6,7 +6,7 @@ class createPDF {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
 
-      await page.goto(`http://localhost:3001/pdf/template/${bagID}`, {
+      await page.goto(`${process.env.GENERATE_PDF_TEMPLATE_URL}${bagID}`, {
         waitUntil: 'networkidle0',
       });
 

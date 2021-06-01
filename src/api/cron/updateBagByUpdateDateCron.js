@@ -4,15 +4,27 @@ const { Op } = require('sequelize');
 
 const Bag = require('../models/Bag');
 
-function updateBagByUpdateDateCron() {
+async function updateBagByUpdateDateCron() {
   try {
     const date = add(new Date(), { days: 5 });
 
-    // Necessário validar o status
-    const [updateBag] = Bag.update(
+    const [updateBag] = await Bag.update(
       { status: 'Atrasado' },
       {
-        where: { updated_at: { [Op.gt]: date } },
+        where: {
+          updated_at: {
+            [Op.gt]: date,
+          },
+          [Op.and]: [
+            {
+              [Op.or]: [
+                { status: 'Enviado' },
+                { status: 'Recebido' },
+                { status: 'Solicitado a retirada' },
+              ],
+            },
+          ],
+        },
       }
     );
 
@@ -22,6 +34,6 @@ function updateBagByUpdateDateCron() {
   }
 }
 
-module.exports = cron.schedule('0 */1 * * *', updateBagByUpdateDateCron, {
+module.exports = cron.schedule('* */1 * * *', updateBagByUpdateDateCron, {
   scheduled: false,
 });

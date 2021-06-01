@@ -1,14 +1,13 @@
 const updateBagByUpdateDateCron = require('./updateBagByUpdateDateCron');
-const aMinute = require('./aMinute');
 
 class ManagerCron {
   constructor() {
-    this.jobs = [aMinute, updateBagByUpdateDateCron];
+    this.jobs = [updateBagByUpdateDateCron];
   }
 
   run() {
     console.log('Cron is running !!');
-    this.jobs.map((job) => job.start());
+    this.jobs.map(async (job) => job.start());
   }
 }
 

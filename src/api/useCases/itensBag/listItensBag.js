@@ -87,11 +87,10 @@ class listItensBag {
 
   async execute({ bagID }) {
     try {
-      const { perfil, nome } = await this.getClienteData({ bagID });
+      const { perfil } = await this.getClienteData({ bagID });
       const { produtos } = await this.getProdutos({ perfil });
-      const html = await this.createHTMLTable({ produtos, nome });
 
-      return html;
+      return produtos;
     } catch (error) {
       throw error;
     }

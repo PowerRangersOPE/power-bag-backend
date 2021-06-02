@@ -34,6 +34,6 @@ async function updateBagByUpdateDateCron() {
   }
 }
 
-module.exports = cron.schedule('* */1 * * *', updateBagByUpdateDateCron, {
+module.exports = cron.schedule('* */10 * * *', updateBagByUpdateDateCron, {
   scheduled: false,
 });

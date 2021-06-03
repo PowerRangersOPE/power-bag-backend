@@ -15,7 +15,7 @@ class validateClienteForBag {
     endereco,
     perfil,
   }) {
-    // const clienteData = [cpf, tel_cel1, dat_nasc, cartao, endereco, perfil];
+    // const clienteData = [email, tel_cel1, dat_nasc, cartao, endereco, perfil];
     // const removeNullClienteData = clienteData.filter(Boolean);
 
     const objClienteData = Object.entries({
@@ -26,12 +26,13 @@ class validateClienteForBag {
       endereco,
       perfil,
     });
+
     const isNullValues = objClienteData.reduce((acc, cur) => {
       if (!cur[1]) acc.push(cur[0]);
       return acc;
     }, []);
 
-    if (isNullValues) {
+    if (isNullValues.length >= 1) {
       return {
         available: false,
         reason: 'dados cadastrais',

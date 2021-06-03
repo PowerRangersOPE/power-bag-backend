@@ -10,7 +10,7 @@ const BagSchema = async (req, res, next) => {
         .positive()
         .allow(0)
         .optional()
-        .error(() => Error('Valor inválido!')),
+        .error('Valor inválido!'),
       observacoes: joi.string().allow('').optional(),
     });
 

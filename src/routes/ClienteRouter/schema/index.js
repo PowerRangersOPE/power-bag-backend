@@ -31,8 +31,8 @@ const createUpdateSchema = async (req, res, next) => {
       pontuacao: joi.string().optional(),
       status: joi.string().optional(),
       dat_nasc: joi.string().optional(),
-      tel_cel1: joi.string().length(11).optional(),
-      tel_cel2: joi.string().length(11).max(11).optional(),
+      tel_cel1: joi.string().min(10).max(11).optional(),
+      tel_cel2: joi.string().min(10).max(11).optional(),
     });
 
     req.body.tel_cel1 = req.body.tel_cel1

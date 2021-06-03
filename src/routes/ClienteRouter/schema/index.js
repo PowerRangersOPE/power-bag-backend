@@ -9,7 +9,7 @@ const createSchema = async (req, res, next) => {
         .regex(/^[0-9]+$/)
         .required()
         .error(() => Error('CPF inválido!')),
-      senha: joi.string().alphanum().min(5).required(),
+      senha: joi.string().min(5).required(),
       nome: joi.string().required(),
       adm: joi.boolean().optional(),
     });

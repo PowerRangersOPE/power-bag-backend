@@ -3,8 +3,13 @@ const joi = require('joi');
 const createSchema = async (req, res, next) => {
   try {
     const schema = joi.object({
-      cpf: joi.string().length(11).required(),
-      senha: joi.string().alphanum().min(3).required(),
+      cpf: joi
+        .string()
+        .length(11)
+        .regex(/^[0-9]+$/)
+        .required()
+        .error(() => Error('CPF inválido!')),
+      senha: joi.string().min(5).required(),
       nome: joi.string().required(),
       adm: joi.boolean().optional(),
     });

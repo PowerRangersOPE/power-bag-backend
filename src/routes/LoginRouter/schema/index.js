@@ -3,13 +3,16 @@ const joi = require('joi');
 const createSessionSchema = async (req, res, next) => {
   try {
     const schema = joi.object({
-      cpf: joi.number().integer().required(), 
-      cpf: joi.string().length(11).required(), 
-      //email: joi.string().email(), -joi for e-mail
-      senha: joi.string().alphanum().min(3).required()
+      cpf: joi
+        .string()
+        .length(11)
+        .regex(/^[0-9]+$/)
+        .required()
+        .error(() => Error('CPF inválido!')),
+      senha: joi.string().min(5).required()
     });
 
-    req.body.cpf = req.body.cpf.replace(/[\W\s]/gi,'');
+    req.body.cpf = req.body.cpf.replace(/[\W\s]/gi, '');
     await schema.validateAsync(req.body);
 
     return next();

@@ -7,7 +7,7 @@ class itensBagController {
     try {
       const { bagid: bagID } = req.params;
       const listItens = await listItensBag.execute({ bagID });
-      return res.json(listItens);
+      return res.send(listItens);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

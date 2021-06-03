@@ -25,9 +25,19 @@
     <div class="m-8">
         <h1 class="text-4xl mb-8">Listagem de itens
         </h1>
-        <h2 class="text-2xl mb-8"> Cliente: <%=nome%>
+        <h2 class="text-2xl mb-8"> Cliente: <strong>
+                <%=nome%>
+            </strong>
         </h2>
-        <h2 class="text-1xl mb-8"> Bag possuí: <%=produtos.length%> produtos
+        <h2 class="text-1xl mb-8">
+            <span>Bag possuí: <strong>
+                    <%=produtos.length%>
+                </strong> produtos</span>
+        </h2>
+        <h2 class="text-1xl mb-8">
+            <span>Valor total: <strong>
+                    R$ <%= totalValueProdutos.toFixed(2).replace('.', ',' ) %>
+                </strong> </span>
         </h2>
         <table class="border-separate">
             <thead>
@@ -56,7 +66,7 @@
                                 <%= produto.id %>
                             </td>
                             <td>
-                                <%= produto.valor %>
+                                R$ <%= produto.valor %>
                             </td>
                             <td>
                                 <%= produto.genero %>

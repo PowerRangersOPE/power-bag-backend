@@ -1,7 +1,6 @@
 const joi = require('joi');
 
 const PerfilSchema = async (req, res, next) => {
-  
   try {
     const schema = joi.object({
       necessidade: joi.string().required(),
@@ -16,9 +15,9 @@ const PerfilSchema = async (req, res, next) => {
       estacao_ano: joi.string().required(),
       frequencia: joi.string().required(),
       n_quero: joi.string().optional(),
-      fx_etaria: joi.string().required().optional(),
-      observacoes: joi.string().allow('').optional()
-    })
+      fx_etaria: joi.string().required(),
+      observacoes: joi.string().allow('').optional(),
+    });
 
     await schema.validateAsync(req.body);
     return next();

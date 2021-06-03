@@ -12,7 +12,7 @@ const router = new Router();
 
 router.get('/bag/all', verifyToken, verifyAdmin, bagController.index);
 router.get('/bag/detail', verifyToken, bagController.show);
-router.post('/bag', verifyToken, BagSchema, bagController.store);
+router.post('/bag', verifyToken, bagController.store);
 router.put(
   '/bag',
   verifyToken,

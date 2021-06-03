@@ -4,15 +4,12 @@ const CardSchema = async (req, res, next) => {
   try {
     const schema = joi.object({
       numero: joi
-      .string()
-      .length(8)
-      .regex(/^[0-9]+$/)
-      .required()
-      .error(() => Error('Número do cartão inválido!')),
-      card_hash: joi.string().required()
-    })
-
-    req.body.numero = req.body.numero.replace(/[\W\s]/gi, '');
+        .string()
+        .length(9)
+        .required()
+        .error(() => Error('Número do cartão inválido!')),
+      card_hash: joi.string().required(),
+    });
 
     await schema.validateAsync(req.body);
     return next();

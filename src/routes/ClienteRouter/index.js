@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { createSchema } = require('./schema');
+const { createSchema, createUpdateSchema } = require('./schema');
 const verifyToken = require('../../api/middlewares/verifyToken');
 const verifyCreateClient = require('../../api/middlewares/verifyCreateClient');
 
@@ -18,7 +18,7 @@ router.post(
   verifyCreateClient,
   clienteController.store
 );
-router.put('/cliente/:id', clienteController.update);
+router.put('/cliente/:id', createUpdateSchema, clienteController.update);
 router.delete('/cliente/:id', clienteController.destroy);
 
 module.exports = router;

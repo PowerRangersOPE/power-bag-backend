@@ -19,7 +19,6 @@ class Perfil extends Model {
         tamanho_calca: DataTypes.STRING,
         tamanho_camisa: DataTypes.STRING,
         estacao_ano: DataTypes.STRING,
-        frequencia: DataTypes.STRING,
         n_quero: DataTypes.STRING,
         fx_etaria: DataTypes.STRING,
         observacoes: DataTypes.STRING,

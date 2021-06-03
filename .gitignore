@@ -114,3 +114,6 @@ src/temp/*
 
 # Test
 test*.js
+
+# Node
+package-lock.*

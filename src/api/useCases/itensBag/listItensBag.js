@@ -8,7 +8,7 @@ class listItensBag {
     this.findProdutos = findProduto;
   }
 
-  async createHTMLTable({ produtos, nome }) {
+  async createHTMLTable({ produtos, totalValueProdutos, nome }) {
     try {
       const filePath = resolve(
         __dirname,
@@ -21,9 +21,15 @@ class listItensBag {
         'template.ejs'
       );
 
+      const formartProdutos = produtos.map((produto) =>
+        Object.assign(produto, {
+          valor: Number(produto.valor).toFixed(2).replace('.', ','),
+        })
+      );
+
       const html = await this.ejs.renderFile(
         filePath,
-        { produtos, nome },
+        { produtos: formartProdutos, totalValueProdutos, nome },
         { async: true }
       );
 
@@ -61,12 +67,12 @@ class listItensBag {
         { tamanho_camisa },
       ];
 
-      const { produtos } = await this.findProdutos.execute(
+      const { produtos, totalValueProdutos } = await this.findProdutos.execute(
         requiredConditionals,
         optionalConditionals
       );
 
-      return { produtos };
+      return { produtos, totalValueProdutos };
     } catch (error) {
       throw error;
     }
@@ -87,10 +93,17 @@ class listItensBag {
 
   async execute({ bagID }) {
     try {
-      const { perfil } = await this.getClienteData({ bagID });
-      const { produtos } = await this.getProdutos({ perfil });
+      const { perfil, nome } = await this.getClienteData({ bagID });
+      const { produtos, totalValueProdutos } = await this.getProdutos({
+        perfil,
+      });
+      const html = await this.createHTMLTable({
+        produtos,
+        nome,
+        totalValueProdutos,
+      });
 
-      return produtos;
+      return html;
     } catch (error) {
       throw error;
     }

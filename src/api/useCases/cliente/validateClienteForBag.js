@@ -8,20 +8,35 @@ class validateClienteForBag {
 
   async verifyClienteData({
     id,
-    cpf,
+    email,
     tel_cel1,
     dat_nasc,
     cartao,
     endereco,
     perfil,
   }) {
-    const clienteData = [cpf, tel_cel1, dat_nasc, cartao, endereco, perfil];
-    const removeNullClienteData = clienteData.filter(Boolean);
+    // const clienteData = [email, tel_cel1, dat_nasc, cartao, endereco, perfil];
+    // const removeNullClienteData = clienteData.filter(Boolean);
 
-    if (clienteData.length !== removeNullClienteData.length) {
+    const objClienteData = Object.entries({
+      email,
+      tel_cel1,
+      dat_nasc,
+      cartao,
+      endereco,
+      perfil,
+    });
+
+    const isNullValues = objClienteData.reduce((acc, cur) => {
+      if (!cur[1]) acc.push(cur[0]);
+      return acc;
+    }, []);
+
+    if (isNullValues.length >= 1) {
       return {
         available: false,
         reason: 'dados cadastrais',
+        nullValues: isNullValues,
       };
     }
 
@@ -60,11 +75,11 @@ class validateClienteForBag {
 
     if (!foundClient) throw new Error('Cliente not found');
 
-    const { available, reason } = await this.verifyClienteData(
+    const { available, reason, nullValues } = await this.verifyClienteData(
       foundClient.toJSON()
     );
 
-    return { clienteID: id, available, reason };
+    return { clienteID: id, available, reason, nullValues };
   }
 }
 

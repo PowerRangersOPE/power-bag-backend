@@ -1,3 +1,4 @@
+const { string } = require('joi');
 const joi = require('joi');
 
 const createSchema = async (req, res, next) => {
@@ -23,6 +24,33 @@ const createSchema = async (req, res, next) => {
   }
 };
 
+const createUpdateSchema = async (req, res, next) => {
+  try {
+    const schema = joi.object({
+      email: joi.string().email().optional(),
+      identificacao: joi.string().optional(),
+      pontuacao: joi.string().optional(),
+      status: joi.string().optional(),
+      dat_nasc: joi.string().optional(),
+      tel_cel1: joi.string().length(11).optional(),
+      tel_cel2: joi.string().length(11).max(11).optional(),
+    });
+
+    req.body.tel_cel1 = req.body.tel_cel1
+      ? req.body.tel_cel1.replace(/[\W\s]/gi, '')
+      : null;
+    req.body.tel_cel2 = req.body.tel_cel2
+      ? req.body.tel_cel2.replace(/[\W\s]/gi, '')
+      : null;
+    await schema.validateAsync(req.body);
+
+    return next();
+  } catch (error) {
+    return res.status(403).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createSchema,
+  createUpdateSchema,
 };

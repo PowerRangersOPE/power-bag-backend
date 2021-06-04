@@ -28,7 +28,7 @@ const createUpdateSchema = async (req, res, next) => {
     const schema = joi.object({
       email: joi.string().email().optional(),
       identificacao: joi.string().optional(),
-      pontuacao: joi.string().optional(),
+      pontuacao: joi.number().optional(),
       status: joi.string().optional(),
       dat_nasc: joi.string().optional(),
       tel_cel1: joi.string().min(10).max(11).required(),

@@ -37,9 +37,7 @@ const createUpdateSchema = async (req, res, next) => {
     req.body.tel_cel1 = req.body.tel_cel1
       ? req.body.tel_cel1.replace(/[\W\s]/gi, '')
       : null;
-    req.body.tel_cel2 = req.body.tel_cel2
-      ? req.body.tel_cel2.replace(/[\W\s]/gi, '')
-      : null;
+
     await schema.validateAsync(req.body);
 
     return next();

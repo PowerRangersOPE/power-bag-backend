@@ -1,5 +1,8 @@
 const Cliente = require('../../models/Cliente');
+const Endereco = require('../../models/Endereco');
+const Cartao = require('../../models/Cartao');
 const Bag = require('../../models/Bag');
+const Perfil = require('../../models/Perfil');
 
 const FindCliente = require('./findClienteUseCase');
 const FindClienteByCPF = require('./findClienteByCPFUseCase');
@@ -12,7 +15,12 @@ const UpdateCliente = require('./updateClienteUseCase');
 const DeleteCliente = require('./deleteClienteUseCase');
 const ValidateClienteForBag = require('./validateClienteForBag');
 
-module.exports = (modelCliente = Cliente) => ({
+module.exports = (
+  modelCliente = Cliente,
+  modelPerfil = Perfil,
+  modelEndereco = Endereco,
+  modelCartao = Cartao
+) => ({
   findCliente: new FindCliente({ modelCliente }),
   findClienteByCPF: new FindClienteByCPF({ modelCliente }),
   findClienteByEmail: new FindClienteByEmail({ modelCliente }),
@@ -21,7 +29,12 @@ module.exports = (modelCliente = Cliente) => ({
   findAllClientes: new FindAllClientes({ modelCliente }),
   createCliente: new CreateCliente({ modelCliente }),
   updateCliente: new UpdateCliente({ modelCliente }),
-  deleteCliente: new DeleteCliente({ modelCliente }),
+  deleteCliente: new DeleteCliente({
+    modelCliente,
+    modelPerfil,
+    modelEndereco,
+    modelCartao,
+  }),
   validateClienteForBag: new ValidateClienteForBag({
     modelCliente,
     modelBag: Bag,

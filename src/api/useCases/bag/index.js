@@ -11,6 +11,7 @@ const CreateBag = require('./createBagUseCase');
 const FindBag = require('./findBag');
 const UpdateBag = require('./updateBag');
 const FindAllBags = require('./findAllBags');
+const FindActiveBag = require('./findActiveBag');
 
 module.exports = (modelBag = Bag) => ({
   createBag: new CreateBag({
@@ -25,4 +26,5 @@ module.exports = (modelBag = Bag) => ({
   findBag: new FindBag({ modelBag }),
   updateBag: new UpdateBag({ modelBag, pagarme }),
   findAllBags: new FindAllBags({ modelBag }),
+  findActiveBag: new FindActiveBag({ modelBag }),
 });

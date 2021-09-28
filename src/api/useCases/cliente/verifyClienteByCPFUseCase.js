@@ -9,7 +9,7 @@ class verifyClientByCPFUseCase {
     try {
       const foundClient = await this.cliente.findOne({
         where: {
-          [Op.and]: [{ cpf }, { status: 'ativo' }],
+          [Op.and]: [{ cpf }, { status: true }],
         },
       });
       return foundClient;

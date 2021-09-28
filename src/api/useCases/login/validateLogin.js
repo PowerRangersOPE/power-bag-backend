@@ -13,7 +13,7 @@ class validateLogin {
         cpf: clienteCPF,
         senha: clienteSenha,
         adm,
-      } = await this.findClienteByCPF.execute({ cpf, status: 'ativo' });
+      } = await this.findClienteByCPF.execute({ cpf, status: true });
 
       const match = await comparePassword(senha, clienteSenha);
 

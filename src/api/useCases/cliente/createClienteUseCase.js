@@ -5,7 +5,8 @@ class createClienteUseCase {
 
   async execute(body) {
     try {
-      const cliente = await this.cliente.create(body);
+      const bodyWithStatus = { ...body, status: true };
+      const cliente = await this.cliente.create(bodyWithStatus);
 
       if (!cliente) throw new Error('Create cliente got error');
 

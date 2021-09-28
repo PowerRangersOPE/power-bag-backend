@@ -61,8 +61,8 @@ class ClienteController {
 
   async destroy(req, res) {
     try {
-      const cliente = await deleteCliente.execute(req.params.id);
-      return res.json(cliente);
+      const [, cliente] = await deleteCliente.execute(req.params.id, req.body);
+      return res.status(201).json(cliente);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

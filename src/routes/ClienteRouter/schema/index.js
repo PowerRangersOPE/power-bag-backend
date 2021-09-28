@@ -12,6 +12,7 @@ const createSchema = async (req, res, next) => {
       senha: joi.string().min(5).required(),
       nome: joi.string().required(),
       adm: joi.boolean().optional(),
+      status: joi.string().optional(),
     });
 
     req.body.cpf = req.body.cpf.replace(/[\W\s]/gi, '');
@@ -29,10 +30,10 @@ const createUpdateSchema = async (req, res, next) => {
       email: joi.string().email().optional(),
       identificacao: joi.string().optional(),
       pontuacao: joi.number().optional(),
-      status: joi.string().optional(),
       dat_nasc: joi.string().optional(),
       tel_cel1: joi.string().min(10).optional(),
       tel_cel2: joi.string().min(10).optional(),
+      status: joi.string().optional(),
     });
 
     // req.body.tel_cel1 = req.body.tel_cel1

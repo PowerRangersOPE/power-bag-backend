@@ -11,8 +11,7 @@
         "dev": "yarn db:migrate && nodemon --inspect=0.0.0.0 src/server.js",
         "db:migrate": "npx sequelize-cli db:migrate",
         "db:create": "npx sequelize-cli db:create power-bag",
-        "start": "node src/server.js",
-        "start-old": "npm run db:migrate && node src/server.js",
+        "start": "npm run db:migrate && node src/server.js",
         "eslint:fix": "npx eslint src/**/*.js --fix  --quiet"
     },
     "author": "Power Rangers Squad",

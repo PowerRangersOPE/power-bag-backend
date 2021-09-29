@@ -1,6 +1,7 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-       await queryInterface.changeColumn('cliente', 'status', {
+       await queryInterface.removeColumn('cliente', 'status');
+       await queryInterface.addColumn('cliente', 'status', {
             type: Sequelize.BOOLEAN,
             allowNull: true,
             default: true,
@@ -8,10 +9,10 @@ module.exports = {
     },
 
     down: async (queryInterface, Sequelize) => {
-       await queryInterface.changeColumn('cliente', 'status', {
+       await queryInterface.removeColumn('cliente', 'status');
+       await queryInterface.addColumn('cliente', 'status', {
           type: Sequelize.STRING,
-          allowNull: true,
-          unique: false
+          allowNull: true
         });
     }
   };

@@ -13,9 +13,7 @@ const PerfilSchema = async (req, res, next) => {
       tamanho_calca: joi.string().required(),
       tamanho_camisa: joi.string().required(),
       estacao_ano: joi.string().required(),
-      n_quero: joi.string().optional(),
       fx_etaria: joi.string().required(),
-      frequencia: joi.string().required(),
       observacoes: joi.string().allow('').optional(),
     });
 

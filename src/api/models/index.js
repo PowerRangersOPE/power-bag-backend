@@ -5,6 +5,7 @@ const Cliente = require('./Cliente');
 const Bag = require('./Bag');
 const Produto = require('./Produto');
 const ItensBag = require('./ItensBag');
+const Shop = require('./Shop');
 
 class Models {
   static init(sequelize) {
@@ -16,6 +17,7 @@ class Models {
       Bag: Bag.init(sequelize),
       Produto: Produto.init(sequelize),
       ItensBag: ItensBag.init(sequelize),
+      Shop: Shop.init(sequelize),
     };
 
     Object.values(models)

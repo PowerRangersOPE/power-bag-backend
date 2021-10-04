@@ -7,6 +7,6 @@ const shopController = new ShopController();
 
 const router = Router();
 
-router.post('/cartao', shopController.store);
+router.post('/shop', shopController.store);
 
 module.exports = router;

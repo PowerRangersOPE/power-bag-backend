@@ -10,6 +10,7 @@ const bagRouter = require('./BagRouter');
 const loginRouter = require('./LoginRouter');
 const pdfRouter = require('./PDFRouter');
 const shopRouter = require('./ShopRouter');
+const shopStylesRouter = require('./ShopStylesRouter');
 
 const router = Router();
 
@@ -23,5 +24,6 @@ router.use(bagRouter);
 router.use(loginRouter);
 router.use(pdfRouter);
 router.use(shopRouter);
+router.use(shopStylesRouter);
 
 module.exports = router;

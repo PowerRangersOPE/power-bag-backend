@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Shops extends Model {
+class ShopStyles extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -9,26 +9,26 @@ class Shops extends Model {
           defaultValue: DataTypes.UUIDV4,
           primaryKey: true,
         },
-        cnpj: DataTypes.STRING,
-        status: DataTypes.BOOLEAN,
+        home: DataTypes.JSON,
+        profilePage: DataTypes.JSON,
       },
       {
         sequelize,
         freezeTableName: true,
-        modelName: 'Shops',
-        tableName: 'shops',
+        modelName: 'ShopStyles',
+        tableName: 'shopStyles',
       }
     );
   }
 
   static associate(models) {
-    this.hasOne(models.ShopStyles, {
+    this.belongsTo(models.Shop, {
       foreignKey: 'shop_id',
-      as: 'shopStyle',
+      as: 'shop',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });
   }
 }
 
-module.exports = Shops;
+module.exports = ShopStyles;

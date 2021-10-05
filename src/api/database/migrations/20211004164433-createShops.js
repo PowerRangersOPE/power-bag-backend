@@ -5,7 +5,7 @@ module.exports = {
               type: Sequelize.UUID,
               primaryKey: true,
           },
-          cnpj: {
+          name: {
             type: Sequelize.STRING,
             allowNull: false,
           },

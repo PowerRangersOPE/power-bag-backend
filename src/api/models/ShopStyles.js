@@ -10,7 +10,7 @@ class ShopStyles extends Model {
           primaryKey: true,
         },
         home: DataTypes.JSON,
-        profilePage: DataTypes.JSON,
+        profile: DataTypes.JSON,
       },
       {
         sequelize,

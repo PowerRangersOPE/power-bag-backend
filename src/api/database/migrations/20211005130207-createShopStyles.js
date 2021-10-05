@@ -9,7 +9,7 @@ module.exports = {
              type: Sequelize.JSON,
              allowNull: false,
          },
-         profilePage: {
+         profile: {
             type: Sequelize.JSON,
             allowNull: false,
         },

@@ -6,6 +6,6 @@ const shopStylesController = new ShopStylesController();
 
 const router = Router();
 
-router.post('/shop/styles', shopStylesController.store);
+router.post('/shop/styles/:shopId', shopStylesController.store);
 
 module.exports = router;

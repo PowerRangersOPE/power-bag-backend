@@ -9,7 +9,7 @@ class Shops extends Model {
           defaultValue: DataTypes.UUIDV4,
           primaryKey: true,
         },
-        cnpj: DataTypes.STRING,
+        name: DataTypes.STRING,
         status: DataTypes.BOOLEAN,
       },
       {
@@ -24,7 +24,7 @@ class Shops extends Model {
   static associate(models) {
     this.hasOne(models.ShopStyles, {
       foreignKey: 'shop_id',
-      as: 'shopStyle',
+      as: 'shopStyles',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
     });

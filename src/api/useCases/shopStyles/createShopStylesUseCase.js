@@ -1,6 +1,6 @@
-class createShopUseCase {
+class createShopStylesUseCase {
   constructor({ modelShopStyles }) {
-    this.shop = modelShopStyles;
+    this.shopStyles = modelShopStyles;
   }
 
   async execute(body) {
@@ -9,10 +9,10 @@ class createShopUseCase {
 
       if (!shopStyles) throw new Error('Create shopStyles got error');
 
-      return { Created: true };
+      return { shopStyles };
     } catch (error) {
       throw error;
     }
   }
 }
-module.exports = createShopUseCase;
+module.exports = createShopStylesUseCase;
